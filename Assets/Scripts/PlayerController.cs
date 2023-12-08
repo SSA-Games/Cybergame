@@ -20,8 +20,11 @@ public class PlayerController : MonoBehaviour
         // Проверка соприкосновений
         isGrounded = Physics2D.IsTouchingLayers(coll, LayerMask.GetMask("Ground"));
 
-        Move();
-        Jump();
+        if (!PauseControl.isPaused)
+        {
+            Move();
+            Jump();
+        }
     }
 
     private void Move()
@@ -46,4 +49,5 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
+
 }
