@@ -118,7 +118,7 @@ TextureImporter:
         width: 395
         height: 395
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,7 +139,7 @@ TextureImporter:
         width: 395
         height: 395
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,7 +160,7 @@ TextureImporter:
         width: 395
         height: 395
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -177,9 +177,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 0
-        height: 0
+        y: 810
+        width: 395
+        height: 395
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,10 +193,262 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Floor Sprite Map_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1205
+        width: 395
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 573f53ba988f09345ad200f9cad4487d
+      internalID: 216587829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Floor Sprite Map_5
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 810
+        width: 395
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b4e0933a68073141bf882b4ccd89476
+      internalID: -806260399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Floor Sprite Map_6
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 810
+        width: 395
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26cddd0b59ffe4c44a7d6644fb8ada06
+      internalID: -599368476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Floor Sprite Map_7
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 810
+        width: 395
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 911441b232b2bd443b27410997472b65
+      internalID: 934082176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Floor Sprite Map_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 415
+        width: 395
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87f36b65a41d67a448207b6ab37bc1e6
+      internalID: 1004320237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Floor Sprite Map_9
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 415
+        width: 395
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 863060c764e31f646aae335b47e0ef8a
+      internalID: 1638020004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Floor Sprite Map_10
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 415
+        width: 395
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 813a3f5e9d1acc744a9da817a481c3f2
+      internalID: -1769683585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Floor Sprite Map_11
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 415
+        width: 395
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a65deecce57d08c47b84e441f627ddeb
+      internalID: -1177968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Floor Sprite Map_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 20
+        width: 395
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 340657e75a9995249b3b120bbb7514fd
+      internalID: 1735533756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Floor Sprite Map_13
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 20
+        width: 395
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6d736f03ca71eb479c1135010dcd824
+      internalID: 1312866645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Floor Sprite Map_14
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 20
+        width: 395
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48e02b2c15cf5ea49b09a3f1794d7d1b
+      internalID: -1146477521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Floor Sprite Map_15
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 20
+        width: 395
+        height: 395
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b599a659cc5f034e86251996015c81a
+      internalID: -82105635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 33ed55e9a618a0e47a63d76ee9f373fc
     internalID: 0
     vertices: []
     indices: 
@@ -204,10 +456,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Floor Sprite Map_0: 216587829
       Floor Sprite Map_1: 8349767147955200197
+      Floor Sprite Map_10: -1769683585
+      Floor Sprite Map_11: -1177968
+      Floor Sprite Map_12: 1735533756
+      Floor Sprite Map_13: 1312866645
+      Floor Sprite Map_14: -1146477521
+      Floor Sprite Map_15: -82105635
       Floor Sprite Map_2: 7319557777730073840
       Floor Sprite Map_3: 525771609213475821
       Floor Sprite Map_4: -6745049112056346509
+      Floor Sprite Map_5: -806260399
+      Floor Sprite Map_6: -599368476
+      Floor Sprite Map_7: 934082176
+      Floor Sprite Map_8: 1004320237
+      Floor Sprite Map_9: 1638020004
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
