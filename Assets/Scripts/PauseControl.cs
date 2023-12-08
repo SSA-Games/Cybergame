@@ -10,25 +10,24 @@ public class PauseControl : MonoBehaviour
     void Update()
     {
         //Проверка нажатия паузы каждый кадр
-        Pause();
-        if (!isPaused)
-        {
-            PauseUIObject.SetActive(false);
-        }
-        else
-        {
-            PauseUIObject.SetActive(true);
-        }
+        PauseCheck();
+        PauseUIObject.SetActive(isPaused);
     }
 
-    public static void Pause() //Логика паузы
+    public static void PauseCheck() //Логика паузы
     {
-        if (!isPaused && Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            isPaused = true;
-            Time.timeScale = 0f;
+            if (!isPaused)
+            {
+                isPaused = true;
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                isPaused = false;
+                Time.timeScale = 1f;
+            }
         }
-        isPaused = false;
-        Time.timeScale = 1f;
     }
 }
