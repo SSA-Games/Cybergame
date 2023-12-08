@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
         // Применяес движение к Rb
         rb.velocity = movement;
+
     }
 
     private void Jump()
