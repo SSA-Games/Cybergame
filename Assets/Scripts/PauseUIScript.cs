@@ -17,7 +17,7 @@ public class PauseUIScript: MonoBehaviour
         Button ButtonExit = root.Q<Button>("exit_button");
 
         //Обработка событий
-        ButtonResume.clicked += ()=>PauseButton_Clicked();
+        ButtonResume.clicked += ()=> PauseButton_Clicked();
         ButtonExit.clicked += () => ExitButton_Clicked();
     }
 

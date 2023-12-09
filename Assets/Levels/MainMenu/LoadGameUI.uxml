@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; align-items: auto; justify-content: center;">
+        <ui:GroupBox name="saves_list" style="align-self: flex-start; width: 35%; height: 100%; align-items: flex-start; position: absolute;">
+            <ui:Scroller high-value="100" direction="Vertical" value="42" name="scroller" style="position: absolute; height: 674px; width: 19px;" />
+        </ui:GroupBox>
+        <ui:GroupBox name="saves_info" style="width: 35%; align-self: flex-end; height: 100%; position: absolute; justify-content: center; top: 0;" />
+    </ui:VisualElement>
+</ui:UXML>
