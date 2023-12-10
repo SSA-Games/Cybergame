@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using System.Linq;
 
 public class SaveLoadManager : MonoBehaviour
 {
     public GameObject Player;
-    private string path;
-    private DirectoryInfo folder;
+    private static string path;
+    private static DirectoryInfo folder;
     private void Start()
     {
         path = Application.persistentDataPath;
         folder = new DirectoryInfo(path + "/saves");
+        if (!folder.Exists)
+        {
+            folder.Create();
+        }
     }
     public void QuickSave()
     {
@@ -20,15 +25,12 @@ public class SaveLoadManager : MonoBehaviour
         string name = "/save0.json";
         while (File.Exists(path + "/saves" + name))
         {
+            Debug.Log(name[5]);
             name = "/save" + (Convert.ToInt32(name[5]) + 1).ToString() + ".json";
         }
         //Сохраняем
         PlayerData data = new PlayerData(Player);
         string json = JsonUtility.ToJson(data, true);
-        if (!folder.Exists)
-        {
-            folder.Create();
-        }
         File.WriteAllText(path + "/saves" + name, json);
     }
     
@@ -40,7 +42,7 @@ public class SaveLoadManager : MonoBehaviour
         Player.transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
     }
 
-    public int SavesCount() //Получение количества файлов сохранений
+    public static int SavesCount() //Получение количества файлов сохранений
     {
         if (folder.Exists)
         {
@@ -49,12 +51,12 @@ public class SaveLoadManager : MonoBehaviour
         return 0;
     }
 
-    public List<string> GetSaveNames() //Получение имеющихся сохранений для меню LoadGameUI
+    public static List<string> GetSaveNames() //Получение имеющихся сохранений для меню LoadGameUI
     {
         List<string> result = new List<string>();
-        if (folder.Exists)
+        if (SavesCount() != 0)
         {
-            foreach(var element in folder.GetFiles())
+            foreach (FileInfo element in folder.GetFiles())
             {
                 result.Add(element.Name);
             }

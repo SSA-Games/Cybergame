@@ -4,5 +4,6 @@
         <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="exit_button" name="exit_button" style="left: 25px; top: 200px; width: 230px; height: 35px;" />
         <ui:Button text="Resume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="resume_button" style="height: 35px; width: 230px; left: 25px; top: -18px;" />
         <ui:Button text="Quick Save" parse-escape-sequences="true" display-tooltip-when-elided="true" name="quicksave_button" style="width: 230px; height: 35px; left: 25px; top: -10px;" />
+        <ui:Label tabindex="-1" text="Saving..." parse-escape-sequences="true" display-tooltip-when-elided="true" name="savestatus_label" style="align-self: flex-end; top: -155px; color: rgb(255, 255, 255); display: none;" />
     </ui:VisualElement>
 </ui:UXML>

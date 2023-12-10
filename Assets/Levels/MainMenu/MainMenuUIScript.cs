@@ -10,10 +10,9 @@ public class MainMenuUIScript : MonoBehaviour
     private VisualElement root;
     private GameObject LoadGameUI;
 
-    private void Start()
+    private void Awake()
     {
         LoadGameUI = FindObjectsOfType<GameObject>(true).Where(obj => obj.name == "LoadGameUI").ToArray()[0];
-        Debug.Log("Pls tell me you found the object  " + LoadGameUI.name);
     }
     //Обработка событий
     private void OnEnable()
@@ -53,7 +52,6 @@ public class MainMenuUIScript : MonoBehaviour
 
     private void ExitButton_Clicked()
     {
-        Debug.Log("wow");
         Application.Quit();
     }
 }

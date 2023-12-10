@@ -16,14 +16,15 @@ public class LoadGameUIScript : MonoBehaviour
     private Button CancelButton;
 
     private GameObject MainMenuUI;
+    private GameObject LoadGameUI;
     private GameObject Player;
 
     private Button selectedSave;
 
-    private void Start()
+    private void Awake()
     {
         MainMenuUI = FindObjectsOfType<GameObject>(true).Where(obj => obj.name == "MainMenuUI").ToArray()[0];
-        Debug.Log("Pls tell me you found the object  " + MainMenuUI.name);
+        LoadGameUI = FindObjectsOfType<GameObject>(true).Where(obj => obj.name == "LoadGameUI").ToArray()[0];
     }
     private void OnEnable()
     {
@@ -38,9 +39,10 @@ public class LoadGameUIScript : MonoBehaviour
 
         // Загрузка сохранений в кнопки
 
-        List<string> SaveNames = MainMenuUI.GetComponent<SaveLoadManager>().GetSaveNames();
-        for (int i = 0; i < MainMenuUI.GetComponent<SaveLoadManager>().SavesCount(); i++)
+        List<string> SaveNames = SaveLoadManager.GetSaveNames();
+        for (int i = 0; i < SaveLoadManager.SavesCount(); i++)
         {
+            Debug.Log("adding some buttons");
             AddSaveToList(SaveNames[i]);
         }
 
