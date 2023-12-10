@@ -6,12 +6,12 @@ using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
-public class SaveLoadManager : MonoBehaviour
+public static class SaveLoadManager
 {
-    public GameObject PlayerPrefab;
     private static string path;
     private static DirectoryInfo folder;
-    private void Awake()
+    public static PlayerData LoadedPlayerData;
+    static SaveLoadManager()
     {
         path = Application.persistentDataPath;
         folder = new DirectoryInfo(path + "/saves");
@@ -20,7 +20,7 @@ public class SaveLoadManager : MonoBehaviour
             folder.Create();
         }
     }
-    public void QuickSave()
+    public static string QuickSave() //ВЫЗОВ ТОЛЬКО ИЗ УРОВНЯ
     {
         //Выбираем имя файла
         string name = "/save0.json";
@@ -29,27 +29,24 @@ public class SaveLoadManager : MonoBehaviour
             Debug.Log(name[5]);
             name = "/save" + (Convert.ToInt32(name[5]) + 1).ToString() + ".json";
         }
+        //Находим игрока, чтобы взять у него данные
+        GameObject player = SceneManager.GetActiveScene().GetRootGameObjects().Where(obj => obj.name == "Player").ToArray()[0];
         //Сохраняем
-        PlayerData data = new PlayerData(gameObject);
+        PlayerData data = new PlayerData(player);
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path + "/saves" + name, json);
+        return name.Substring(1, 5);
     }
 
-    public void Load(string name) //Загрузка сохранения
+    public static PlayerData LoadSave(string name) //Загрузка сохранения.
     {
         string json = File.ReadAllText(path + "/saves/" + name + ".json");
-        PlayerData data = JsonUtility.FromJson<PlayerData>(json); //Получаем данные из файла
-
-        SceneManager.LoadScene("Level_1"); //Пусть пока грузится лишь первый уровень
-        if (gameObject.name == "Player") //Проверяем, какого типа наш объект и передаем данные объектам
-        {
-            gameObject.transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
-        }
-        else
-        {
-            Instantiate(PlayerPrefab, new Vector3(data.position[0], data.position[1], data.position[2]), Quaternion.identity);
-        }
+        LoadedPlayerData = JsonUtility.FromJson<PlayerData>(json); //Получаем данные из файла
+        SceneManager.LoadScene(LoadedPlayerData.level_name);
+        return LoadedPlayerData;
     }
+
+
     public static int SavesCount() //Получение количества файлов сохранений
     {
         if (folder.Exists)
@@ -71,4 +68,10 @@ public class SaveLoadManager : MonoBehaviour
         }
         return result;
     }
+
+    public static void DeleteSave(string name)
+    {
+        File.Delete(Application.persistentDataPath + "/saves/" + name + ".json");
+    }
+
 }

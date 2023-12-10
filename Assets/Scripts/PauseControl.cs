@@ -30,4 +30,10 @@ public class PauseControl : MonoBehaviour
             }
         }
     }
+
+    public static IEnumerator waiter(int seconds)  //Магический код для того, чтобы подождать три секунды (Unity moment)
+    {
+        yield return new WaitForSecondsRealtime(seconds);
+    }
+
 }

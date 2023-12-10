@@ -9,7 +9,7 @@ public class PauseUIScript: MonoBehaviour
     private VisualElement root; // Доступ к UI
     private Label SaveStatusLabel;
     GameObject Player;
-    private void Start()
+    private void Awake()
     {
         Player = GameObject.Find("Player");
     }
@@ -43,10 +43,13 @@ public class PauseUIScript: MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
-    private void QuickSaveButton_Clicked()
+    private void QuickSaveButton_Clicked() //Вызываем логику быстрого сохранения и выводим сверху справа статус сохранения
     {
         SaveStatusLabel.style.display = DisplayStyle.Flex;
-        Player.GetComponent<SaveLoadManager>().QuickSave();
+        string saveName = SaveLoadManager.QuickSave();
+        SaveStatusLabel.text = "Successfully saved as " + saveName;
+        StartCoroutine(PauseControl.waiter(3));
         SaveStatusLabel.style.display = DisplayStyle.None;
+        SaveStatusLabel.text = "Saving...";
     }
 }
