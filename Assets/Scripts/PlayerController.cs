@@ -33,6 +33,11 @@ public class PlayerController : MonoBehaviour
             jumpStartTime = Time.time;
         }
 
+        if (Input.GetKey(KeyCode.Space) && isJumping)
+        {
+            Jump();
+        }
+
         if (Input.GetKeyUp(KeyCode.Space) && isJumping)
         {
             isJumping = false;
@@ -76,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (Time.time - jumpStartTime < maxJumpHoldTime && rb.velocity.y > 0)
+        if (Time.time - jumpStartTime < maxJumpHoldTime)
         {
             float jumpHeight = Mathf.Lerp(minJumpHeight, maxJumpHeight, Mathf.Clamp01((Time.time - jumpStartTime) / maxJumpHoldTime));
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
