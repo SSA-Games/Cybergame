@@ -5,7 +5,7 @@ using UnityEngine;
 public class PauseControl : MonoBehaviour
 {
     public GameObject PauseUIObject;
-    public static bool isPaused = false; // Статус паузы
+    public bool isPaused = false; // Статус паузы
 
     void Update()
     {
@@ -14,7 +14,7 @@ public class PauseControl : MonoBehaviour
         PauseUIObject.SetActive(isPaused);
     }
 
-    public static void PauseCheck() //Логика паузы
+    public void PauseCheck() //Логика паузы
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {

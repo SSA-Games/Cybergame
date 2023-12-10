@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class MainMenuUIScript : MonoBehaviour
 {
     private VisualElement root;
+    private GameObject LoadGameUI;
 
+    private void Start()
+    {
+        LoadGameUI = FindObjectsOfType<GameObject>(true).Where(obj => obj.name == "LoadGameUI").ToArray()[0];
+        Debug.Log("Pls tell me you found the object  " + LoadGameUI.name);
+    }
     //Îáğàáîòêà ñîáûòèé
     private void OnEnable()
     {
@@ -28,12 +36,14 @@ public class MainMenuUIScript : MonoBehaviour
 
     private void NewGameButton_Clicked()
     {
-
+        // ÏÎÒÎÌ ÍÓÆÍÎ ÁÓÄÅÒ ÄÎĞÀÁÎÒÀÒÜ, ÍÎ ÏÎÊÀ ÎÑÒÀÂÈÌ ÒÀÊ ÄËß ÏĞÎÑÒÎÒÛ ÄÅÁÀÃÀ
+        SceneManager.LoadScene("Level_1");
     }
 
     private void LoadGameButton_Clicked()
     {
-
+        LoadGameUI.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     private void OptionsButton_Clicked()

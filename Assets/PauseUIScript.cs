@@ -7,6 +7,12 @@ using UnityEngine.SceneManagement;
 public class PauseUIScript: MonoBehaviour
 {
     private VisualElement root; // Доступ к UI
+    GameObject Player;
+    private void Start()
+    {
+        Player = GameObject.Find("Player");
+    }
+
     public void OnEnable()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
@@ -15,20 +21,27 @@ public class PauseUIScript: MonoBehaviour
         Button ButtonResume = root.Q<Button>("resume_button");
         Button ButtonOptions = root.Q<Button>("options_button");
         Button ButtonExit = root.Q<Button>("exit_button");
+        Button ButtonQuickSave = root.Q<Button>("quicksave_button");
 
         //Обработка событий
         ButtonResume.clicked += ()=> PauseButton_Clicked();
         ButtonExit.clicked += () => ExitButton_Clicked();
+        ButtonQuickSave.clicked += () => QuickSaveButton_Clicked();
     }
 
     private void PauseButton_Clicked()
     {
-        PauseControl.isPaused = false;
+        Player.GetComponent<PauseControl>().isPaused = false;
         Time.timeScale = 1f;
     }
 
     private void ExitButton_Clicked()
     {
         SceneManager.LoadScene("Main Menu");
+    }
+
+    private void QuickSaveButton_Clicked()
+    {
+        Player.GetComponent<SaveLoadManager>().QuickSave();
     }
 }

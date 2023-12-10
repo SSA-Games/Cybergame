@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D coll;
 
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
         // Проверка соприкосновений
         isGrounded = Physics2D.IsTouchingLayers(coll, LayerMask.GetMask("Ground"));
 
-        if (!PauseControl.isPaused)
+        if (!gameObject.GetComponent<PauseControl>().isPaused)
         {
             Move();
             Jump();
