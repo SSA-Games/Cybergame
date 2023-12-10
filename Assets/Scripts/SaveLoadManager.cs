@@ -4,13 +4,14 @@ using UnityEngine;
 using System.IO;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class SaveLoadManager : MonoBehaviour
 {
-    public GameObject Player;
+    public GameObject PlayerPrefab;
     private static string path;
     private static DirectoryInfo folder;
-    private void Start()
+    private void Awake()
     {
         path = Application.persistentDataPath;
         folder = new DirectoryInfo(path + "/saves");
@@ -29,19 +30,26 @@ public class SaveLoadManager : MonoBehaviour
             name = "/save" + (Convert.ToInt32(name[5]) + 1).ToString() + ".json";
         }
         //Сохраняем
-        PlayerData data = new PlayerData(Player);
+        PlayerData data = new PlayerData(gameObject);
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path + "/saves" + name, json);
     }
-    
+
     public void Load(string name) //Загрузка сохранения
     {
         string json = File.ReadAllText(path + "/saves/" + name + ".json");
-        PlayerData data = JsonUtility.FromJson<PlayerData>(json);
+        PlayerData data = JsonUtility.FromJson<PlayerData>(json); //Получаем данные из файла
 
-        Player.transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
+        SceneManager.LoadScene("Level_1"); //Пусть пока грузится лишь первый уровень
+        if (gameObject.name == "Player") //Проверяем, какого типа наш объект и передаем данные объектам
+        {
+            gameObject.transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
+        }
+        else
+        {
+            Instantiate(PlayerPrefab, new Vector3(data.position[0], data.position[1], data.position[2]), Quaternion.identity);
+        }
     }
-
     public static int SavesCount() //Получение количества файлов сохранений
     {
         if (folder.Exists)

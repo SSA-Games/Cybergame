@@ -17,7 +17,6 @@ public class LoadGameUIScript : MonoBehaviour
 
     private GameObject MainMenuUI;
     private GameObject LoadGameUI;
-    private GameObject Player;
 
     private Button selectedSave;
 
@@ -42,7 +41,6 @@ public class LoadGameUIScript : MonoBehaviour
         List<string> SaveNames = SaveLoadManager.GetSaveNames();
         for (int i = 0; i < SaveLoadManager.SavesCount(); i++)
         {
-            Debug.Log("adding some buttons");
             AddSaveToList(SaveNames[i]);
         }
 
@@ -57,11 +55,11 @@ public class LoadGameUIScript : MonoBehaviour
     {
         if (selectedSave != null)
         {
-            //Найти выделенное сохранениe и загрузить
+            LoadGameUI.GetComponent<SaveLoadManager>().Load(selectedSave.text); //Передаем название сохранения в метод для загрузки
         }
     }
 
-    private void DeleteButton_Clicked()
+    private void DeleteButton_Clicked() //Удаляем сохранение (скрываем его кнопку)
     {
         if (selectedSave != null)
         {
@@ -70,7 +68,7 @@ public class LoadGameUIScript : MonoBehaviour
         }
     }
 
-    private void CancelButton_Clicked()
+    private void CancelButton_Clicked() //Назад в меню
     {
         MainMenuUI.SetActive(true);
         gameObject.SetActive(false);
@@ -79,10 +77,12 @@ public class LoadGameUIScript : MonoBehaviour
     private void AddSaveToList(string name) //Добавляем сохранение в UI
     {
         Button Save = new Button();
-        Save.text = name;
+        SavesList.Add(Save);
+        Save.text = name.Substring(0, name.Length - 5);
         Save.style.width = Length.Percent(100);
         Save.clicked += () =>
         {
+            Debug.Log("now selected button " + Save.text);
             selectedSave = Save;
         };
     }
