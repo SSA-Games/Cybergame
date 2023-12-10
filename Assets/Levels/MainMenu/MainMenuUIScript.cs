@@ -9,7 +9,6 @@ public class MainMenuUIScript : MonoBehaviour
 {
     private VisualElement root;
     private GameObject LoadGameUI;
-    public GameObject PlayerPrefab;
 
     private void Awake()
     {
@@ -38,7 +37,6 @@ public class MainMenuUIScript : MonoBehaviour
     {
         // онрнл мсфмн асдер днпюанрюрэ, мн онйю нярюбхл рюй дкъ опнярнрш деаюцю
         SceneManager.LoadScene("Level_1");
-        Instantiate(PlayerPrefab, new Vector3(0, 1, -10), Quaternion.identity);
     }
 
     private void LoadGameButton_Clicked()

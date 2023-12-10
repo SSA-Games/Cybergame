@@ -18,13 +18,14 @@ public class LoadGameUIScript : MonoBehaviour
     private GameObject MainMenuUI;
     private GameObject LoadGameUI;
 
-    private Button selectedSave;
+    private Button selectedSave; //Особая ссылка на кнопку, НЕ ОБЪЕКТ UI
 
     private void Awake()
     {
         MainMenuUI = FindObjectsOfType<GameObject>(true).Where(obj => obj.name == "MainMenuUI").ToArray()[0];
         LoadGameUI = FindObjectsOfType<GameObject>(true).Where(obj => obj.name == "LoadGameUI").ToArray()[0];
     }
+
     private void OnEnable()
     {
         // Получение доступа к UI
@@ -55,7 +56,7 @@ public class LoadGameUIScript : MonoBehaviour
     {
         if (selectedSave != null)
         {
-            LoadGameUI.GetComponent<SaveLoadManager>().Load(selectedSave.text); //Передаем название сохранения в метод для загрузки
+            SaveLoadManager.LoadSave(selectedSave.text); //Передаем название сохранения в метод для загрузки
         }
     }
 
@@ -65,6 +66,7 @@ public class LoadGameUIScript : MonoBehaviour
         {
             selectedSave = null;
             RemoveSaveFromList(selectedSave);
+            SaveLoadManager.DeleteSave(selectedSave.text);
         }
     }
 

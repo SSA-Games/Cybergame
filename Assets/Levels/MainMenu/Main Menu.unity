@@ -184,7 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7fbb106bdf9ca4ea55a10e65121eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 561717349041609517, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}
 --- !u!1 &1819644323
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,8 +289,7 @@ GameObject:
   - component: {fileID: 2015931952}
   - component: {fileID: 2015931954}
   - component: {fileID: 2015931953}
-  - component: {fileID: 2015931955}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LoadGameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,19 +339,6 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 77d9fc1cfc7b1f647ab71737953bced0, type: 3}
   m_SortingOrder: 0
---- !u!114 &2015931955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2015931951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a33eec109f08294586cf34762b64d8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 561717349041609517, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

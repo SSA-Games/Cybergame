@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 5373027633402144463}
   - component: {fileID: 5765861491044841046}
   - component: {fileID: 7001204349154342966}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PauseUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5373027633402144463
 Transform:
   m_ObjectHideFlags: 0
