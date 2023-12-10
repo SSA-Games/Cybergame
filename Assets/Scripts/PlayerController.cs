@@ -41,6 +41,24 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Dash();
+        {
+            isJumping = true;
+            jumpStartTime = Time.time;
+        }
+
+        if (Input.GetKey(KeyCode.Space) && isJumping)
+        {
+            Jump();
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space) && isJumping)
+        {
+            isJumping = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Dash();
         }
     }
 
@@ -66,6 +84,10 @@ public class PlayerController : MonoBehaviour
         else
         {
             isJumping = false;
+        if (Time.time - jumpStartTime < maxJumpHoldTime)
+        {
+            float jumpHeight = Mathf.Lerp(minJumpHeight, maxJumpHeight, Mathf.Clamp01((Time.time - jumpStartTime) / maxJumpHoldTime));
+            rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
         }
     }
 
