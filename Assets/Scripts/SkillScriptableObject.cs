@@ -14,7 +14,8 @@ public class Skill : ScriptableObject
     public int Cost;
     public int Cooldown;
 
-    public CustomCollider2D Collider;
+    public PhysicsMaterial2D Form;
+    public Sprite Sprite;
     public int AnimationLengthSeconds;
     // Other Params
 }
