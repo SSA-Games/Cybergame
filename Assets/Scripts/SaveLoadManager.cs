@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public static class SaveLoadManager
 {
-    private static string path;
+    public static string path;
     private static DirectoryInfo folder;
     public static PlayerData LoadedPlayerData;
     static SaveLoadManager()
@@ -38,12 +38,11 @@ public static class SaveLoadManager
         return name.Substring(1, 5);
     }
 
-    public static PlayerData LoadSave(string name) //Загрузка сохранения.
+    public static void LoadSave(string name) //Загрузка сохранения.
     {
         string json = File.ReadAllText(path + "/saves/" + name + ".json");
         LoadedPlayerData = JsonUtility.FromJson<PlayerData>(json); //Получаем данные из файла
         SceneManager.LoadScene(LoadedPlayerData.level_name);
-        return LoadedPlayerData;
     }
 
 
