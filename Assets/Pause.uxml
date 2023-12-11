@@ -1,9 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:VisualElement name="canvas" style="flex-grow: 1; left: 0; top: 0;">
-        <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="options_button" name="options_button" style="left: 25px; top: 155px; width: 230px; height: 35px;" />
-        <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="exit_button" name="exit_button" style="left: 25px; top: 200px; width: 230px; height: 35px;" />
-        <ui:Button text="Resume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="resume_button" style="height: 35px; width: 230px; left: 25px; top: -18px;" />
+        <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="options_button" name="options_button" style="left: 25px; top: 205px; width: 230px; height: 35px;" />
+        <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="exit_button" name="exit_button" style="left: 25px; top: 215px; width: 230px; height: 35px;" />
+        <ui:Button text="Resume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="resume_button" style="height: 35px; width: 230px; left: 25px; top: -20px;" />
         <ui:Button text="Quick Save" parse-escape-sequences="true" display-tooltip-when-elided="true" name="quicksave_button" style="width: 230px; height: 35px; left: 25px; top: -10px;" />
         <ui:Label tabindex="-1" text="Saving..." parse-escape-sequences="true" display-tooltip-when-elided="true" name="savestatus_label" style="align-self: flex-end; top: -155px; color: rgb(255, 255, 255); display: none;" />
+        <ui:Button text="Load Save" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="options_button" name="loadsave_button" style="left: 25px; top: 0; width: 230px; height: 35px;" />
+        <ui:GroupBox name="saves_list" style="position: absolute; justify-content: flex-start; align-self: center; align-items: center; height: 85%; width: 311px; display: none;" />
+        <ui:Button text="Load" parse-escape-sequences="true" display-tooltip-when-elided="true" name="load_button" style="align-self: center; bottom: -265px; width: 166px; display: none;" />
     </ui:VisualElement>
 </ui:UXML>
