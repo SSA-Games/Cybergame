@@ -13,6 +13,9 @@ public class Skill : ScriptableObject
     public SkillType Type;
     public Vector2 Size;
 
+    // Дополнительные эффекты (слабость, яд)
+    // ???
+
     // Визуальные параметры умения
     // Сюда нужно вставить форму умения (MeshCollider for SkillInstance)
     public Sprite Sprite;

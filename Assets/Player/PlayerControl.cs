@@ -71,7 +71,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         // Использование умений
-        // Не хочу ебаться с тем, как это сделать красивее, полиморфизм идет НАХУЙ
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             player.CastSkill(player.skillSlots[0]);

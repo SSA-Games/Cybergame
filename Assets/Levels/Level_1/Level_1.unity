@@ -128,37 +128,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6522149261617523015, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}
   m_PrefabInstance: {fileID: 1688663572}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &214338657
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 214338658}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &214338658
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214338657}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.59765416, y: 0.21116982, z: -9.946708}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &291136794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -167,14 +136,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -2050055436899799637, guid: 32df37bd3a03be140bbcf1b5cbc89961, type: 3}
-      propertyPath: m_Size.x
-      value: 0.16
-      objectReference: {fileID: 0}
-    - target: {fileID: -2050055436899799637, guid: 32df37bd3a03be140bbcf1b5cbc89961, type: 3}
-      propertyPath: m_Size.y
-      value: 0.16
-      objectReference: {fileID: 0}
     - target: {fileID: 3165553640163545476, guid: 32df37bd3a03be140bbcf1b5cbc89961, type: 3}
       propertyPath: m_LocalScale.x
       value: 5.89
@@ -762,6 +723,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2380220999482317769, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 4193326742699602127, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -933,4 +898,3 @@ SceneRoots:
   - {fileID: 1688663572}
   - {fileID: 801229671}
   - {fileID: 291136794}
-  - {fileID: 214338658}

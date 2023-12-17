@@ -8,7 +8,13 @@ abstract public class CharacterInstance : MonoBehaviour
     public string Name = "CHARACTER_NAME";
     public float Health;
     public float Energy;
-    public bool invulnurable = false; // Проходят ли по персонажу попадания (ставить true для NPC)
+
+    // Флаги состояния
+    public bool Invulnurable = false; // Проходят ли по персонажу попадания (ставить true для NPC не в бою)
+    public bool Talkable = false; // Можно ли поговорить с персонажем
+    public bool InBattle = false;
+
+    public GameObject FightModeTarget; // Цель в бою
 
     protected virtual void Update()
     {
@@ -21,29 +27,28 @@ abstract public class CharacterInstance : MonoBehaviour
     public void CastSkill(Skill skill)
     {
         Energy -= skill.Cost;
+
         //Создание и инстанцирование GameObject из Skill ScriptableObject
         GameObject skillGameObject = new GameObject("skillGameObject");
         skillGameObject.transform.position = this.gameObject.transform.position + (Vector3)PlayerControl.ViewDirection;
         skillGameObject.transform.localScale = skill.Size;
         skillGameObject.transform.SetParent(this.gameObject.transform);
 
-        var Collider = skillGameObject.AddComponent<BoxCollider2D>();          // Позже надо заменить на MeshCollider
-        var SpriteRenderer = skillGameObject.AddComponent<SpriteRenderer>();
         var SkillScript = skillGameObject.AddComponent<SkillInstance>();
-        SkillScript.SkillConstruct(skill);
-
-        Collider.size = new Vector2(skill.Size.x / (float)36.8125, skill.Size.y / (float)36.8125);
-        Collider.isTrigger = true;
-        SpriteRenderer.sprite = skill.Sprite;
-        Destroy(skillGameObject, skill.AnimationLengthSeconds);
+        SkillScript.SetSkillInfo(skill);
     }
 
     public void GetHitBySkill(Skill skill)
     {
-        if (!invulnurable)
+        if (!Invulnurable)
         {
             Health -= skill.Damage;
         }
+    }
+
+    public void Interact()
+    {
+
     }
 
     // Поиск умения в списке приобритенных умений (по имени) -------
