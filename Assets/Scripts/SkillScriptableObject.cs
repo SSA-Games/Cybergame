@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Create new skill")]
-public class SkillScriptableObject : ScriptableObject
+public class Skill : ScriptableObject
 {
-    // Информация о положении скилла в дереве скиллов
-    public Skill TreeParent;
-    public List<Skill> TreeChildren;
     // Информация об умении
-    public string Name;
     public Sprite Icon;
     public int Cost;
     public int Cooldown;
     public int Damage;
+    public SkillType Type;
 
     // Визуальные параметры умения
     public PhysicsMaterial2D Form;
     public Sprite Sprite;
-    public int AnimationLengthSeconds;
+    public float AnimationLengthSeconds;
     // Other Params
+
+    public enum SkillType {HACK, CLOSE_RANGE, HIGH_RANGE_DOT, HIGH_RANGE_DIRECTIONAL}
 }

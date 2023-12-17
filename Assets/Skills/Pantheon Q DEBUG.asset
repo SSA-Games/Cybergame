@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1627946a99840454c9054ef6b8563cb6, type: 3}
-  m_Name: Pantheon Q
+  m_Name: Pantheon Q DEBUG
   m_EditorClassIdentifier: 
-  TreeParent: {fileID: 0}
-  TreeChildren: []
-  Name: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 216587829, guid: 9149be068acad6e46b8837041d36b6ab, type: 3}
   Cost: 0
   Cooldown: 0
-  Collider: {fileID: 0}
-  AnimationLengthSeconds: 0
+  Damage: 0
+  Type: 1
+  Form: {fileID: 0}
+  Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  AnimationLengthSeconds: 0.6

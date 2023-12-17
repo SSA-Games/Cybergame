@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Skill : MonoBehaviour
+public class SkillInstance : MonoBehaviour
 {
-    SkillScriptableObject SkillInfo;
+    Skill SkillInfo;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         try
@@ -18,8 +18,8 @@ public class Skill : MonoBehaviour
         }
     }
 
-    public void SkillConstruct(SkillScriptableObject skillScriptableObject)
+    public void SkillConstruct(Skill Skill)
     {
-        SkillInfo = skillScriptableObject;
+        SkillInfo = Skill;
     }
 }

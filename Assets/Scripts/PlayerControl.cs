@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+    public static Vector2 viewDirection = Vector2.right;
     public float moveSpeed = 5f;
     public float dashForce = 30f;
     public float minJumpHeight = 2f;
@@ -9,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     public float maxJumpHoldTime = 1.0f;
 
     private bool isGrounded;
+    private Player player;
     private Rigidbody2D rb;
     private Collider2D coll;
     private bool isJumping = false;
@@ -16,6 +18,7 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
+        player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         rb.freezeRotation = true;
@@ -47,6 +50,24 @@ public class PlayerControl : MonoBehaviour
         {
             Dash();
         }
+
+        // Использование умений
+
+        // Не хочу ебаться с тем, как это сделать красивее, полиморфизм идет НАХУЙ
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            player.CastSkill(player.skillSlots[0]);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            player.CastSkill(player.skillSlots[1]);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            player.CastSkill(player.skillSlots[2]);
+        }
     }
 
     void Move()
@@ -59,6 +80,7 @@ public class PlayerControl : MonoBehaviour
         {
             Jump();
         }
+        viewDirection = new Vector2(movement.x, 0).normalized;
     }
 
     void Jump()
