@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerData
+public class PlayerSaveData
 {
     public float[] position = new float[3];
     public string level_name;
 
-    public PlayerData(GameObject player)
+    public PlayerSaveData(GameObject player)
     {
         position[0] = player.transform.position.x;
         position[1] = player.transform.position.y;

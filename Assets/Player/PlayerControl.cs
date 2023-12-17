@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public static Vector2 viewDirection = Vector2.right;
+    public static Vector2 ViewDirection = Vector2.right;
     public float moveSpeed = 5f;
     public float dashForce = 30f;
     public float minJumpHeight = 2f;
@@ -10,15 +10,16 @@ public class PlayerControl : MonoBehaviour
     public float maxJumpHoldTime = 1.0f;
 
     private bool isGrounded;
-    private Player player;
-    private Rigidbody2D rb;
-    private Collider2D coll;
     private bool isJumping = false;
     private float jumpStartTime;
 
+    private PlayerInstance player;
+    private Rigidbody2D rb;
+    private Collider2D coll;
+
     void Start()
     {
-        player = GetComponent<Player>();
+        player = GetComponent<PlayerInstance>();
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         rb.freezeRotation = true;
@@ -27,6 +28,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         isGrounded = Physics2D.IsTouchingLayers(coll, LayerMask.GetMask("Ground"));
+        ViewDirection = GetViewDirection();
 
         Move();
 
@@ -96,7 +98,6 @@ public class PlayerControl : MonoBehaviour
         {
             Jump();
         }
-        viewDirection = new Vector2(movement.x, 0).normalized;
     }
 
     void Jump()
@@ -127,5 +128,15 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-
+    private Vector2 GetViewDirection()
+    {
+        if(Camera.main.ScreenToWorldPoint(Input.mousePosition).x >= transform.position.x)
+        {
+            return Vector2.right;
+        }
+        else
+        {
+            return Vector2.left;
+        }
+    }
 }

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 216587829, guid: 9149be068acad6e46b8837041d36b6ab, type: 3}
   Cost: 0
-  Cooldown: 0
-  Damage: 0
+  Cooldown: 0.8
+  Damage: 100
   Type: 1
-  Form: {fileID: 0}
+  Size: {x: 4, y: 2}
   Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   AnimationLengthSeconds: 0.6

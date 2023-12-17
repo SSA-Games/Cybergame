@@ -6,11 +6,15 @@ using System;
 public class SkillInstance : MonoBehaviour
 {
     Skill SkillInfo;
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        string mes = "I hit something... "; // FOR DEBUG
         try
         {
-            collision.gameObject.GetComponent<Character>().GetHitBySkill(SkillInfo);
+            other.GetComponent<CharacterInstance>().GetHitBySkill(SkillInfo);
+            mes += "It's a character!"; // FOR DEBUG
+            Debug.Log(mes); // FOR DEBUG
         }
         catch (UnityException e)
         {

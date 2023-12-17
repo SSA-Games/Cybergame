@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class HUDScript : MonoBehaviour
 {
-    Player player;
+    PlayerInstance player;
 
     public VisualElement root;
 
@@ -15,7 +15,7 @@ public class HUDScript : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = GameObject.Find("Player").GetComponent<PlayerInstance>();
     }
 
     private void OnEnable()

@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4193326742699602127}
   - component: {fileID: 327398635308075406}
-  - component: {fileID: -2503846856145185056}
   - component: {fileID: 6761540083160189559}
   - component: {fileID: 1628106898973972179}
+  - component: {fileID: -2503846856145185056}
   - component: {fileID: -2595064704881487305}
-  - component: {fileID: -4018677537033196809}
+  - component: {fileID: 2089746410540806123}
   - component: {fileID: 3073986009657204974}
   m_Layer: 0
   m_Name: Player
@@ -66,23 +66,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-2503846856145185056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561717349041609517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53622d207018c44499041969af19b0b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  dashForce: 30
-  minJumpHeight: 2
-  maxJumpHeight: 3
-  maxJumpHoldTime: 1
 --- !u!61 &6761540083160189559
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -180,6 +163,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2503846856145185056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561717349041609517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53622d207018c44499041969af19b0b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  dashForce: 30
+  minJumpHeight: 2
+  maxJumpHeight: 3
+  maxJumpHoldTime: 1
 --- !u!114 &-2595064704881487305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseUIObject: {fileID: 2139647265264991641, guid: fdc8bf5c773aa7a4f8f87277cb951e8e, type: 3}
---- !u!114 &-4018677537033196809
+--- !u!114 &2089746410540806123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,10 +205,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e4d88fdf83de74a92ceb2137b978e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AcquiredSkills: []
-  Name: 
-  Health: 0
-  Energy: 0
+  AcquiredSkills:
+  - {fileID: 11400000, guid: 7e89b5627904e694dab0d5bf07118a5b, type: 2}
+  Name: John Doe
+  Health: 300
+  Energy: 100
+  invulnurable: 0
   skillSlots:
   - {fileID: 0}
   - {fileID: 0}

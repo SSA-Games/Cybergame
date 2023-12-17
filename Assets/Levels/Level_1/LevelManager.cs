@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     private GameObject player;
-    private PlayerData data;
+    private PlayerSaveData data;
     void Awake()
     {
         if (SaveLoadManager.LoadedPlayerData != null)

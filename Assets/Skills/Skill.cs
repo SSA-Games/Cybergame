@@ -7,13 +7,14 @@ public class Skill : ScriptableObject
 {
     // Информация об умении
     public Sprite Icon;
-    public int Cost;
-    public int Cooldown;
-    public int Damage;
+    public float Cost;
+    public float Cooldown;
+    public float Damage;
     public SkillType Type;
+    public Vector2 Size;
 
     // Визуальные параметры умения
-    public PhysicsMaterial2D Form;
+    // Сюда нужно вставить форму умения (MeshCollider for SkillInstance)
     public Sprite Sprite;
     public float AnimationLengthSeconds;
     // Other Params

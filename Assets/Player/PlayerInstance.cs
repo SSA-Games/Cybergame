@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Character
+public class PlayerInstance : CharacterInstance
 {
     public Skill[] skillSlots = new Skill[3];
     private void Start()
