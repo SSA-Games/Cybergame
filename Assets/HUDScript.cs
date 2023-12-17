@@ -35,8 +35,29 @@ public class HUDScript : MonoBehaviour
 
     private void Update()
     {
-        Skill_1.style.backgroundImage = new StyleBackground(player.skillSlots[0].Icon);
-        Skill_2.style.backgroundImage = new StyleBackground(player.skillSlots[1].Icon);
-        Skill_3.style.backgroundImage = new StyleBackground(player.skillSlots[2].Icon);
+        try
+        {
+            Skill_1.style.backgroundImage = new StyleBackground(player.skillSlots[0].Icon);
+        }
+        catch
+        {
+            // Do nothing about it!
+        }
+        try
+        {
+            Skill_2.style.backgroundImage = new StyleBackground(player.skillSlots[1].Icon);
+        }
+        catch
+        {
+            // Do nothing about it, we don't care!
+        }
+        try
+        {
+            Skill_3.style.backgroundImage = new StyleBackground(player.skillSlots[2].Icon);
+        }
+        catch
+        {
+            // Nope, don't care at all!
+        }
     }
 }
