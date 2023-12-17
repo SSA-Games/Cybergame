@@ -49,7 +49,6 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Dash();
-        {
             isJumping = true;
             jumpStartTime = Time.time;
         }
@@ -66,11 +65,10 @@ public class PlayerControl : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Dash();
+           Dash();
         }
 
         // Использование умений
-
         // Не хочу ебаться с тем, как это сделать красивее, полиморфизм идет НАХУЙ
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -102,22 +100,22 @@ public class PlayerControl : MonoBehaviour
     }
 
     void Jump()
-    {
-        if (Time.time - jumpStartTime < maxJumpHoldTime)
         {
-            float jumpHeight = Mathf.Lerp(minJumpHeight, maxJumpHeight, Mathf.Clamp01((Time.time - jumpStartTime) / maxJumpHoldTime));
-            rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+         if (Time.time - jumpStartTime < maxJumpHoldTime)
+            {
+                float jumpHeight = Mathf.Lerp(minJumpHeight, maxJumpHeight, Mathf.Clamp01((Time.time - jumpStartTime) / maxJumpHoldTime));
+             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+         }
+            else
+            {
+                isJumping = false;
+                if (Time.time - jumpStartTime < maxJumpHoldTime)
+                {
+                    float jumpHeight = Mathf.Lerp(minJumpHeight, maxJumpHeight, Mathf.Clamp01((Time.time - jumpStartTime) / maxJumpHoldTime));
+                    rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+                }
+            }
         }
-        else
-        {
-            isJumping = false;
-        if (Time.time - jumpStartTime < maxJumpHoldTime)
-        {
-            float jumpHeight = Mathf.Lerp(minJumpHeight, maxJumpHeight, Mathf.Clamp01((Time.time - jumpStartTime) / maxJumpHoldTime));
-            rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
-        }
-    }
-
     void Dash()
     {
         if (isGrounded)
@@ -128,4 +126,6 @@ public class PlayerControl : MonoBehaviour
             rb.freezeRotation = true;
         }
     }
+
+
 }
