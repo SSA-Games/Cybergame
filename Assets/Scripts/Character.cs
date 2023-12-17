@@ -9,7 +9,6 @@ public class Character : MonoBehaviour
     public int Health;
     public int Energy;
 
-    public Skill[] skillSlots = new Skill[3];
     private void Awake()
     {
         gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -17,6 +16,14 @@ public class Character : MonoBehaviour
         Health = 300;
         Energy = 100;
         Name = "John Doe";
+    }
+
+    protected virtual void Update()
+    {
+        if (Health <= 0)
+        {
+            // Смэрть (Destroy gameobject)
+        }
     }
     // Поиск в списке по имени-------
     protected Skill FindSkillByName(string name)
@@ -55,9 +62,5 @@ public class Character : MonoBehaviour
         Health -= skill.Damage;
     }
 
-    public void ChangeSkillSlot(int slotNumber, Skill skill)
-    {
-        skillSlots[slotNumber] = skill;
-    }
 }
 
