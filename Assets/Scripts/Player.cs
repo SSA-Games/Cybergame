@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public List<Skill> AcquiredSkills;
     public Skill[] skillSlots = new Skill[3];
     private void Start()
     {

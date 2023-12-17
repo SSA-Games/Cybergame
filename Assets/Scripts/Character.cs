@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    GameManager gm;
+    public List<Skill> AcquiredSkills;
     public string Name;
     public int Health;
     public int Energy;
 
     private void Awake()
     {
-        gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
-
         Health = 300;
         Energy = 100;
         Name = "John Doe";
@@ -28,7 +26,7 @@ public class Character : MonoBehaviour
     // Поиск в списке по имени-------
     protected Skill FindSkillByName(string name)
     {
-        foreach(Skill skill in gm.SkillList)
+        foreach(Skill skill in AcquiredSkills)
         {
             if (skill.name == name)
             {
