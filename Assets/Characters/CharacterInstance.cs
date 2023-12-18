@@ -15,12 +15,13 @@ abstract public class CharacterInstance : MonoBehaviour
     public bool InBattle = false;
 
     public GameObject FightModeTarget; // Цель в бою
+    public GameObject skillPrefab; 
 
     protected virtual void Update()
     {
         if (Health <= 0)
         {
-            Destroy(gameObject); // 死
+            Die();
         }
     }
 
@@ -28,14 +29,13 @@ abstract public class CharacterInstance : MonoBehaviour
     {
         Energy -= skill.Cost;
 
-        //Создание и инстанцирование GameObject из Skill ScriptableObject
-        GameObject skillGameObject = new GameObject("skillGameObject");
+        // Инстанцирование префаба скилла skill
+        GameObject skillGameObject = Instantiate(skillPrefab);
         skillGameObject.transform.position = this.gameObject.transform.position + (Vector3)PlayerControl.ViewDirection;
         skillGameObject.transform.localScale = skill.Size;
         skillGameObject.transform.SetParent(this.gameObject.transform);
 
-        var SkillScript = skillGameObject.AddComponent<SkillInstance>();
-        SkillScript.SetSkillInfo(skill);
+        skillGameObject.GetComponent<SkillInstance>().SetSkillInfo(skill);
     }
 
     public void GetHitBySkill(Skill skill)
@@ -46,9 +46,9 @@ abstract public class CharacterInstance : MonoBehaviour
         }
     }
 
-    public void Interact()
+    public virtual void Die()
     {
-
+        Destroy(gameObject); // 死
     }
 
     // Поиск умения в списке приобритенных умений (по имени) -------

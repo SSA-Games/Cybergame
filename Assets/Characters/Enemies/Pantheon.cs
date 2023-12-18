@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pantheon : AbstractEnemy
+public class Pantheon : EnemyInstance
 {
     private void Awake()
     {

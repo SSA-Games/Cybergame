@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract public class AbstractEnemy : CharacterInstance
+abstract public class EnemyInstance : CharacterInstance
 {
+    public GameObject itemPrefab;
+    public List<Item> LootList = new List<Item>();
     private void Awake()
     {
         FightModeTarget = GameObject.Find("Player");
@@ -37,5 +39,22 @@ abstract public class AbstractEnemy : CharacterInstance
     protected virtual void AttackTarget()
     {
         // Battle logic. To be overwritten for each character.
+    }
+
+    public override void Die()
+    {
+        // Drop items on death
+        foreach (Item loot in LootList)
+        {
+            float roll = Random.Range(0, 100);
+            if (roll <= loot.DropChance)
+            {
+                GameObject itemInstance = Instantiate(itemPrefab);
+                itemInstance.GetComponent<ItemInstance>().SetItemInfo(loot, transform.position);
+                Debug.Log("Item dropped!");
+            }
+        }
+        // Destroy itself
+        base.Die();
     }
 }

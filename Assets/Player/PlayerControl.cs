@@ -86,6 +86,13 @@ public class PlayerControl : MonoBehaviour
         {
             player.CastSkill(player.skillSlots[2]);
         }
+
+        // Взаимодействие с окружающим миром (Предметы, магазин, NPC)
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            player.Interact();
+        }
     }
 
     void Move()

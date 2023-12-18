@@ -8,12 +8,8 @@ public class SkillInstance : MonoBehaviour
     Skill SkillInfo;
     public void Start()
     {
-
-        var Collider = gameObject.AddComponent<BoxCollider2D>();          // Позже надо заменить на MeshCollider
-        var SpriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-        Collider.size = new Vector2(SkillInfo.Size.x / (float)36.8125, SkillInfo.Size.y / (float)36.8125);
-        Collider.isTrigger = true;
-        SpriteRenderer.sprite = SkillInfo.Sprite;
+        GetComponent<BoxCollider2D>().size = new Vector2(SkillInfo.Size.x / (float)36.8125, SkillInfo.Size.y / (float)36.8125);
+        GetComponent<SpriteRenderer>().sprite = SkillInfo.Sprite;
         Destroy(gameObject, SkillInfo.AnimationLengthSeconds);
     }
 
