@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97232bbac0c6b524bb8e9f856b7f2ea9, type: 3}
   m_Name: MiPhone 3
   m_EditorClassIdentifier: 
-  Name: MiPhone 3
   Type: 0
-  DropChance: 50
-  Sprite: {fileID: 0}
+  DropChance: 100
+  Sprite: {fileID: 21300000, guid: 749568ff6b7337149b8846b3a82ad40a, type: 3}

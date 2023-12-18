@@ -71,7 +71,6 @@ public class PlayerInstance : CharacterInstance
         if (collision.TryGetComponent<ItemInstance>(out item))
         {
             interactableObjects.Add(item.gameObject);
-            Debug.Log("We found an item");
         }
         else if (collision.TryGetComponent<NPCInstance>(out NPC))
         {
