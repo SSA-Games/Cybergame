@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2561971313353912845}
   - component: {fileID: -8227180299737706172}
   - component: {fileID: -7003030606766962380}
+  - component: {fileID: -7008048982399425772}
   m_Layer: 0
   m_Name: Hayaro
   m_TagString: NPC
@@ -120,3 +121,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.18, y: 0.37}
   m_Direction: 0
+--- !u!114 &-7008048982399425772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8365334511792810542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0a6c65f5f9f62478c49c64ee8e54f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AcquiredSkills: []
+  Name: Hayaro
+  Health: 1000
+  Energy: 300
+  Invulnurable: 1
+  Talkable: 1
+  InBattle: 0
+  FightModeTarget: {fileID: 0}
+  skillPrefab: {fileID: 0}

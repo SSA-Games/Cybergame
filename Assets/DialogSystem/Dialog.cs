@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using System.Linq;
 
 public class Dialog //Также еще нужно будет добавить систему выборов!
 {
@@ -24,7 +25,7 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
 
     private List<GameObject> participants = new List<GameObject>();
     private string fileName;
-    private List<string> lines = new List<string>();
+    private List<string> lines;
 
     private int currentLine;
 
@@ -35,7 +36,7 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
         foreach (GameObject p in participants)
         {
             this.participants.Add(p);                    // Добавляем участников диалога
-            fileName += p.name[0];                       // Получаем ID для поиска в файле
+            fileName += p.name;                       // Получаем ID для поиска в файле
         }
         fileName += index.ToString();                    // В конце добавляем номер диалога между участниками
         fileName += ".json";
@@ -43,17 +44,12 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
         // Теперь прочитаем файл с диалогом.
 
         string json = File.ReadAllText(Application.dataPath + "/DialogSystem/Dialogs/" + fileName);
-        string[] array = JsonUtility.FromJson<string[]>(json);
-
-        foreach (string str in array)
-        {
-            lines.Add(str);
-        }
+        lines = JsonUtility.FromJson<List<string>>(json);
 
         // Диалог инициализирован. Теперь обращаемся к UI:
         // Включаем и выключаем новый UI
-        dialogUIObject = GameObject.Find("DialogUI");
-        hudUIObject = GameObject.Find("HUD");
+        dialogUIObject = GameObject.FindObjectsOfType<GameObject>().Where(obj => obj.name == "DialogUI").ToArray()[0];
+        hudUIObject = GameObject.FindObjectsOfType<GameObject>(true).Where(obj => obj.name == "HUD").ToArray()[0];
         dialogUIObject.SetActive(true);
         hudUIObject.SetActive(false);
 
@@ -67,13 +63,19 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
     public void Advance() // Продвижение по диалогу к следующей фразе
     {
         currentLine++;
-
-        // Заменяем тексты и спрайты
-        dialogUI.SetCharacterName(lines[currentLine].Split(";")[0]);
-        dialogUI.SetCharacterText(lines[currentLine].Split(";")[1]);
+        if (currentLine < lines.Count)  // Проверяем, не закончили мы диалог
+        {
+            // Заменяем тексты и спрайты
+            dialogUI.SetCharacterName(lines[currentLine].Split(";")[0]);
+            dialogUI.SetCharacterText(lines[currentLine].Split(";")[1]);
+        }
+        else
+        {
+            Quit();
+        }
     }
 
-    public void Quit()  // Выход из диалога
+    private void Quit()  // Выход из диалога
     {
         dialogUIObject.SetActive(true);
         hudUIObject.SetActive(false);

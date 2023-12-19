@@ -30,7 +30,6 @@ public class PlayerInstance : CharacterInstance
                 closestInteractableObject = obj;
             }
         }
-        Debug.Log(interactableObjects.Count);
     }
 
     public void ChangeSkillSlot(int slotNumber, Skill skill)
@@ -68,6 +67,7 @@ public class PlayerInstance : CharacterInstance
 
     private void OnTriggerEnter2D(Collider2D collision) // При входе в радиус интерактивности
     {
+        Debug.Log("Something entered the trigger");
         ItemInstance item;
         NPCInstance NPC;
         // Если детектирован предмет, NPC, или магазин, добавляем в список предметов для взаимодействия
@@ -76,8 +76,11 @@ public class PlayerInstance : CharacterInstance
             interactableObjects.Add(item.gameObject);
         }
         else if (collision.TryGetComponent<NPCInstance>(out NPC))
-        {
-            interactableObjects.Add(item.gameObject);
+        { 
+            if (NPC.Talkable)  //Проверяем, можно ли с NPC говорить
+            {
+                interactableObjects.Add(NPC.gameObject);
+            }
         }
         if (interactableObjects.Count == 1)
         {
