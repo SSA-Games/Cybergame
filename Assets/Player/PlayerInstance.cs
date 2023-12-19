@@ -30,6 +30,7 @@ public class PlayerInstance : CharacterInstance
                 closestInteractableObject = obj;
             }
         }
+        Debug.Log(interactableObjects.Count);
     }
 
     public void ChangeSkillSlot(int slotNumber, Skill skill)
@@ -59,6 +60,8 @@ public class PlayerInstance : CharacterInstance
             else if (closestInteractableObject.TryGetComponent<NPCInstance>(out NPC))
             {
                 //бГХЛНДЕИЯРБХЕ Я NPC
+                GameObject[] participants = new GameObject[2] { this.gameObject, closestInteractableObject };
+                Dialog dialog = new Dialog(participants, 0); // онгфе дндекюрэ: йюй нопедекхрэ йюйни он яверс дхюкнц??
             }
         }
     }
