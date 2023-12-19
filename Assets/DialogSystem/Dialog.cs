@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dialog : MonoBehaviour
+public class Dialog  //Также еще нужно будет добавить систему выборов!
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    /* Объект диалога создается при инициации диалога.
+    * При создании в диалог передается его ID и участники.
+    * По ID происходит поиск диалога среди файлов
+    * Содержимое файла загружается в массив строк
+    * Происходим по строкам, загружая имя участника и его строку в DialogOverlay при нажатии клавиши от игрока
+    */
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // Структура файла dialog_id:
+    // speaker; line
+    // speaker; line
+    // ...
 }
