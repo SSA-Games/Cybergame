@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerControl : MonoBehaviour
     private bool isGrounded;
     private bool isJumping = false;
     private float jumpStartTime;
+    private float[] cooldowns = new float[] { 0, 0, 0 }; //Таймер кулдаунов
 
     private PlayerInstance player;
     private Rigidbody2D rb;
@@ -22,6 +24,7 @@ public class PlayerControl : MonoBehaviour
         player = GetComponent<PlayerInstance>();
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+
         rb.freezeRotation = true;
     }
 
@@ -72,19 +75,31 @@ public class PlayerControl : MonoBehaviour
 
         // Использование умений
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && player.skillSlots[0] != null )
         {
-            player.CastSkill(player.skillSlots[0]);
+            if (Time.time - cooldowns[0] > player.skillSlots[0].Cooldown)
+            {
+                player.CastSkill(player.skillSlots[0]);
+                cooldowns[0] = Time.time;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && player.skillSlots[1] != null)
         {
-            player.CastSkill(player.skillSlots[1]);
+            if (Time.time - cooldowns[1] > player.skillSlots[1].Cooldown)
+            {
+                player.CastSkill(player.skillSlots[1]);
+                cooldowns[1] = Time.time;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && player.skillSlots[0] != null)
         {
-            player.CastSkill(player.skillSlots[2]);
+            if (Time.time - cooldowns[2] > player.skillSlots[2].Cooldown)
+            {
+                player.CastSkill(player.skillSlots[2]);
+                cooldowns[2] = Time.time;
+            }
         }
 
         // Взаимодействие с окружающим миром (Предметы, магазин, NPC)

@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="root" style="flex-grow: 1;">
+        <ui:VisualElement name="textBox" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/DialogSystem/Dialog%20TextBox.png?fileID=21300000&amp;guid=9bb548728715a134f9d55576adb64c92&amp;type=3#Dialog TextBox&apos;); align-items: flex-end; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-left;">
+            <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="characterName" style="position: absolute; bottom: 151px; left: 19px; font-size: 21px; width: 887px;" />
+            <ui:Label tabindex="-1" text="Speech" parse-escape-sequences="true" display-tooltip-when-elided="true" name="characterSpeech" style="font-size: 21px; bottom: 15px; position: absolute; left: 19px; height: 117px; width: 864px;" />
+            <ui:VisualElement name="characterImage" style="flex-grow: 1; height: 553px; width: 302px; background-image: url(&apos;project://database/Assets/Characters/NPC/Hayaro.png?fileID=3779877&amp;guid=f27224ff9d34fd640949b6410ab1d718&amp;type=3#Hayaro_1&apos;); position: absolute; left: 889px; top: 284px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

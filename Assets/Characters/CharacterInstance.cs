@@ -17,6 +17,7 @@ abstract public class CharacterInstance : MonoBehaviour
     public GameObject FightModeTarget; // Цель в бою
     public GameObject skillPrefab; 
 
+
     protected virtual void Update()
     {
         if (Health <= 0)
@@ -29,13 +30,25 @@ abstract public class CharacterInstance : MonoBehaviour
     {
         Energy -= skill.Cost;
 
-        // Инстанцирование префаба скилла skill
-        GameObject skillGameObject = Instantiate(skillPrefab);
-        skillGameObject.transform.position = this.gameObject.transform.position + (Vector3)PlayerControl.ViewDirection;
-        skillGameObject.transform.localScale = skill.Size;
-        skillGameObject.transform.SetParent(this.gameObject.transform);
+        switch (skill.Type) {                   // Полиморфизм пошел нахуй, у меня не вышло.
+            case SkillType.CLOSE_RANGE:
+                // Инстанцирование префаба скилла skill
+                GameObject skillGameObject = Instantiate(skillPrefab);
+                skillGameObject.transform.position = this.gameObject.transform.position + (Vector3)PlayerControl.ViewDirection;
+                skillGameObject.transform.localScale = skill.Size;
+                skillGameObject.transform.SetParent(this.gameObject.transform);
 
-        skillGameObject.GetComponent<SkillInstance>().SetSkillInfo(skill);
+                skillGameObject.GetComponent<SkillInstance>().SetSkillInfo(skill);
+                break;
+            case SkillType.HACK:
+                /* 
+                 * Что должен уметь делать любой скрипт Hack?
+                 * Выбирать для себя цели (по всей карте или ту, что под мышкой)
+                 * Применять эффект на цели.
+                 * Не нужно создавать GameObject
+                 */
+                break;
+        }
     }
 
     public void GetHitBySkill(Skill skill)

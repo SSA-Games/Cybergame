@@ -15,16 +15,10 @@ public class SkillInstance : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        string mes = "I hit something... "; // FOR DEBUG
-        try
+        CharacterInstance characterHit;
+        if (other.TryGetComponent<CharacterInstance>(out characterHit))
         {
-            other.GetComponent<CharacterInstance>().GetHitBySkill(SkillInfo);
-            mes += "It's a character!"; // FOR DEBUG
-            Debug.Log(mes); // FOR DEBUG
-        }
-        catch (UnityException e)
-        {
-            Debug.Log(e.Message);
+            characterHit.GetHitBySkill(SkillInfo);
         }
     }
 

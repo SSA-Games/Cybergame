@@ -22,5 +22,5 @@ public class Skill : ScriptableObject
     public float AnimationLengthSeconds;
     // Other Params
 
-    public enum SkillType {HACK, CLOSE_RANGE, HIGH_RANGE_DOT, HIGH_RANGE_DIRECTIONAL}
 }
+public enum SkillType { HACK, CLOSE_RANGE, HIGH_RANGE_DOT, HIGH_RANGE_DIRECTIONAL }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1441554696547425877}
   m_Layer: 0
   m_Name: Pantheon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,7 +51,13 @@ MonoBehaviour:
   Name: Pantheon
   Health: 200
   Energy: 50
-  invulnurable: 0
+  Invulnurable: 0
+  Talkable: 0
+  InBattle: 0
+  FightModeTarget: {fileID: 0}
+  skillPrefab: {fileID: 0}
+  itemPrefab: {fileID: 0}
+  LootList: []
 --- !u!212 &-3379078162574781707
 SpriteRenderer:
   m_ObjectHideFlags: 0
