@@ -86,7 +86,7 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
         {
             if (obj.tag == "Player")
             {
-                obj.GetComponent<PlayerInstance>().Talking = false;
+                obj.GetComponent<PlayerInstance>().InDialog = false;
             }
         }
         dialogUIObject.SetActive(false);

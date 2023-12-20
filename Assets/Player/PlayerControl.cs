@@ -35,7 +35,7 @@ public class PlayerControl : MonoBehaviour
 
 
         // Если игрок занят, его передвижение отключено. Тут своя система управления
-        if (player.Talking)
+        if (player.InDialog)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {

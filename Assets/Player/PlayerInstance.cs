@@ -61,7 +61,7 @@ public class PlayerInstance : CharacterInstance
             else if (closestInteractableObject.tag == "NPC")
             {
                 //Взимодействие с NPC
-                Talking = true;
+                InDialog = true;
                 NPCInstance NPC = closestInteractableObject.GetComponent<NPCInstance>();
                 GameObject[] participants = new GameObject[2] { this.gameObject, closestInteractableObject };
                 dialog = new Dialog(participants, 0);
