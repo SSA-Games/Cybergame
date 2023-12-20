@@ -33,81 +33,93 @@ public class PlayerControl : MonoBehaviour
         isGrounded = Physics2D.IsTouchingLayers(coll, LayerMask.GetMask("Ground"));
         ViewDirection = GetViewDirection();
 
-        Move();
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        // Если игрок занят, его передвижение отключено. Тут своя система управления
+        if (player.Talking)
         {
-            isJumping = true;
-            jumpStartTime = Time.time;
-        }
-
-        if (Input.GetKey(KeyCode.Space) && isJumping)
-        {
-            Jump();
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space) && isJumping)
-        {
-            isJumping = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Dash();
-            isJumping = true;
-            jumpStartTime = Time.time;
-        }
-
-        if (Input.GetKey(KeyCode.Space) && isJumping)
-        {
-            Jump();
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space) && isJumping)
-        {
-            isJumping = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-           Dash();
-        }
-
-        // Использование умений
-
-        if (Input.GetKeyDown(KeyCode.Q) && player.skillSlots[0] != null )
-        {
-            if (Time.time - cooldowns[0] > player.skillSlots[0].Cooldown)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                player.CastSkill(player.skillSlots[0]);
-                cooldowns[0] = Time.time;
+                player.ContinueDialog();
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.E) && player.skillSlots[1] != null)
+        else // Если игрок не занят, обычная система управления:
         {
-            if (Time.time - cooldowns[1] > player.skillSlots[1].Cooldown)
+            Move();
+
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
-                player.CastSkill(player.skillSlots[1]);
-                cooldowns[1] = Time.time;
+                isJumping = true;
+                jumpStartTime = Time.time;
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.R) && player.skillSlots[0] != null)
-        {
-            if (Time.time - cooldowns[2] > player.skillSlots[2].Cooldown)
+            if (Input.GetKey(KeyCode.Space) && isJumping)
             {
-                player.CastSkill(player.skillSlots[2]);
-                cooldowns[2] = Time.time;
+                Jump();
             }
-        }
 
-        // Взаимодействие с окружающим миром (Предметы, магазин, NPC)
+            if (Input.GetKeyUp(KeyCode.Space) && isJumping)
+            {
+                isJumping = false;
+            }
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            player.Interact();
-        }
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                Dash();
+                isJumping = true;
+                jumpStartTime = Time.time;
+            }
+
+            if (Input.GetKey(KeyCode.Space) && isJumping)
+            {
+                Jump();
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space) && isJumping)
+            {
+                isJumping = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                Dash();
+            }
+
+            // Использование умений
+
+            if (Input.GetKeyDown(KeyCode.Q) && player.skillSlots[0] != null)
+            {
+                if (Time.time - cooldowns[0] > player.skillSlots[0].Cooldown)
+                {
+                    player.CastSkill(player.skillSlots[0]);
+                    cooldowns[0] = Time.time;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && player.skillSlots[1] != null)
+            {
+                if (Time.time - cooldowns[1] > player.skillSlots[1].Cooldown)
+                {
+                    player.CastSkill(player.skillSlots[1]);
+                    cooldowns[1] = Time.time;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.R) && player.skillSlots[0] != null)
+            {
+                if (Time.time - cooldowns[2] > player.skillSlots[2].Cooldown)
+                {
+                    player.CastSkill(player.skillSlots[2]);
+                    cooldowns[2] = Time.time;
+                }
+            }
+
+            // Взаимодействие с окружающим миром (Предметы, магазин, NPC)
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                player.Interact();
+            }
+        }   
     }
 
     void Move()

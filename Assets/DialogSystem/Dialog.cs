@@ -25,7 +25,7 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
 
     private List<GameObject> participants = new List<GameObject>();
     private string fileName;
-    private List<string> lines;
+    private List<string> lines = new List<string>();
 
     private int currentLine;
 
@@ -36,19 +36,23 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
         foreach (GameObject p in participants)
         {
             this.participants.Add(p);                    // Добавляем участников диалога
-            fileName += p.name;                       // Получаем ID для поиска в файле
+            fileName += p.name;                          // Получаем ID для поиска в файле
         }
         fileName += index.ToString();                    // В конце добавляем номер диалога между участниками
-        fileName += ".json";
+        fileName += ".txt";
 
         // Теперь прочитаем файл с диалогом.
+        string file = File.ReadAllText(Application.dataPath + "/DialogSystem/Dialogs/" + fileName);
+        string[] linesFromFile = file.Split("\n");
+        foreach (string line in linesFromFile)
+        {
+            lines.Add(line);
+        }
+        Debug.Log(lines[0]);
 
-        string json = File.ReadAllText(Application.dataPath + "/DialogSystem/Dialogs/" + fileName);
-        lines = JsonUtility.FromJson<List<string>>(json);
-
-        // Диалог инициализирован. Теперь обращаемся к UI:
-        // Включаем и выключаем новый UI
-        dialogUIObject = GameObject.FindObjectsOfType<GameObject>().Where(obj => obj.name == "DialogUI").ToArray()[0];
+        // Участники и их реплики загружены. Теперь обращаемся к UI:
+        // Включаем и выключаем необходимый UI
+        dialogUIObject = GameObject.FindObjectsOfType<GameObject>(true).Where(obj => obj.name == "DialogUI").ToArray()[0];
         hudUIObject = GameObject.FindObjectsOfType<GameObject>(true).Where(obj => obj.name == "HUD").ToArray()[0];
         dialogUIObject.SetActive(true);
         hudUIObject.SetActive(false);
@@ -77,7 +81,15 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
 
     private void Quit()  // Выход из диалога
     {
-        dialogUIObject.SetActive(true);
-        hudUIObject.SetActive(false);
+        // Если среди участников есть игрок, Talking = false;
+        foreach (GameObject obj in participants)
+        {
+            if (obj.tag == "Player")
+            {
+                obj.GetComponent<PlayerInstance>().Talking = false;
+            }
+        }
+        dialogUIObject.SetActive(false);
+        hudUIObject.SetActive(true);
     }
 }

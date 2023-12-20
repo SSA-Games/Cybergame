@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &154684986 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6522149261617523015, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}
-  m_PrefabInstance: {fileID: 1688663572}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &291136794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -801,6 +796,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1467452324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7550906209044393924, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}
+  m_PrefabInstance: {fileID: 1688663572}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1688663572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -812,7 +812,7 @@ PrefabInstance:
     - target: {fileID: -2595064704881487305, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}
       propertyPath: PauseUIObject
       value: 
-      objectReference: {fileID: 154684986}
+      objectReference: {fileID: 1467452324}
     - target: {fileID: 411251946697929515, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}
       propertyPath: m_Icon
       value: 
@@ -915,6 +915,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4492665138526402505, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}
       propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550906209044393924, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7599963804535762079, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}

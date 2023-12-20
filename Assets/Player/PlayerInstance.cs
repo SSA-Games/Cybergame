@@ -6,12 +6,17 @@ public class PlayerInstance : CharacterInstance
 {
     private List<GameObject> interactableObjects = new List<GameObject>();
     private GameObject closestInteractableObject;
+    private Dialog dialog;
 
     public List<Item> Inventory = new List<Item>();
     public Skill[] skillSlots = new Skill[3];
 
-    private void Start()
+    public bool Talking = false;
+
+    protected void Start()
     {
+        Debug.Log("1) Нужно что-то сделать с детектированием объектов. Убрать Rigidbody и переделать управление движением?");
+        Debug.Log("2) Добавить появление спрайтов персонажей при диалогах");
         //DEBUG
         AcquiredSkills.Add(FindSkillByName("Pantheon Q DEBUG"));
         ChangeSkillSlot(0, FindSkillByName("Pantheon Q DEBUG"));
@@ -46,23 +51,29 @@ public class PlayerInstance : CharacterInstance
 
     public void Interact() // Мы взаимодействуем с ближайшим предметом из нашего окружения
     {
-        if(closestInteractableObject != null)
+        if (closestInteractableObject != null)
         {
-            ItemInstance item;
-            NPCInstance NPC;
-            if (closestInteractableObject.TryGetComponent<ItemInstance>(out item))
+            if (closestInteractableObject.tag == "Item")
             {
                 //Подбор предмета
+                ItemInstance item = closestInteractableObject.GetComponent<ItemInstance>();
                 Inventory.Add(item.GetItemInfo());
                 Destroy(closestInteractableObject);
             }
-            else if (closestInteractableObject.TryGetComponent<NPCInstance>(out NPC))
+            else if (closestInteractableObject.tag == "NPC")
             {
                 //Взимодействие с NPC
+                Talking = true;
+                NPCInstance NPC = closestInteractableObject.GetComponent<NPCInstance>();
                 GameObject[] participants = new GameObject[2] { this.gameObject, closestInteractableObject };
-                Dialog dialog = new Dialog(participants, 0); // ПОЗЖЕ ДОДЕЛАТЬ: КАК ОПРЕДЕЛИТЬ КАКОЙ ПО СЧЕТУ ДИАЛОГ??
+                dialog = new Dialog(participants, 0);
             }
         }
+    }
+
+    public void ContinueDialog()
+    {
+        dialog.Advance();
     }
 
     private void OnTriggerEnter2D(Collider2D collision) // При входе в радиус интерактивности

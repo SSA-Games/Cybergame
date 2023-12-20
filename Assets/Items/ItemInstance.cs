@@ -9,6 +9,7 @@ public class ItemInstance : MonoBehaviour
 
     private void Awake()
     {
+        tag = "Item";
         transform.parent = null;
     }
     private void Start()
