@@ -13,6 +13,7 @@ abstract public class CharacterInstance : MonoBehaviour
     public bool Invulnurable = false; // Проходят ли по персонажу попадания (ставить true для NPC не в бою)
     public bool Talkable = false; // Можно ли поговорить с персонажем
     public bool InBattle = false;
+    public bool Talking = false; // Находится ли персонаж в диалоге (нужно для управления персонажем)
 
     public GameObject FightModeTarget; // Цель в бою
     public GameObject skillPrefab; 

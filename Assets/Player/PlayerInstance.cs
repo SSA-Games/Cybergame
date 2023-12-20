@@ -11,8 +11,6 @@ public class PlayerInstance : CharacterInstance
     public List<Item> Inventory = new List<Item>();
     public Skill[] skillSlots = new Skill[3];
 
-    public bool Talking = false;
-
     protected void Start()
     {
         Debug.Log("1) Нужно что-то сделать с детектированием объектов. Убрать Rigidbody и переделать управление движением?");
