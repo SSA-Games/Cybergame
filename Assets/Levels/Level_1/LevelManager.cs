@@ -18,8 +18,7 @@ public class LevelManager : MonoBehaviour
 
             SaveLoadManager.LoadedPlayerData = null; // Обнуляем использованные данные (по сути служат маркером загрузки)
         }
-        // Initial pause conditions
-        PauseControl.isPaused = false;
+        // Initial conditions
         Time.timeScale = 1f;
     }
 }

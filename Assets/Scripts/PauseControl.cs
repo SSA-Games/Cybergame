@@ -4,30 +4,36 @@ using UnityEngine;
 
 public class PauseControl : MonoBehaviour
 {
-    public GameObject PauseUIObject;
-    public static bool isPaused = false; // Статус паузы
+    public UIManager uim;
+    private bool isPaused = false; // Статус паузы
 
+    private void Awake()
+    {
+        uim = GameObject.Find("UIManager").GetComponent<UIManager>();
+    }
     void Update()
     {
-        //Проверка нажатия паузы каждый кадр
-        PauseCheck();
-        PauseUIObject.SetActive(isPaused);
-    }
-
-    public void PauseCheck() //Логика паузы
-    {
+        //Проверка нажатия ESC
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!isPaused)
-            {
-                isPaused = true;
-                Time.timeScale = 0f;
-            }
-            else
-            {
-                isPaused = false;
-                Time.timeScale = 1f;
-            }
+            SetPause(!isPaused);
+        }
+    }
+
+
+    public void SetPause(bool flag) //Логика переключения паузы
+    {
+        if (flag)
+        {
+            isPaused = true;
+            Time.timeScale = 0f;
+            uim.LoadUI("PauseUI");
+        }
+        else
+        {
+            isPaused = false;
+            Time.timeScale = 1f;
+            uim.UnloadUI("PauseUI");
         }
     }
 

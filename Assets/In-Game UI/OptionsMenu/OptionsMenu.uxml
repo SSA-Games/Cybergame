@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="background" style="flex-grow: 1; background-color: rgb(27, 16, 125); flex-direction: column; align-items: center;">
+        <ui:GroupBox name="section_buttons_group" style="width: 1916px; align-items: center; flex-direction: row; justify-content: center; height: 63px;">
+            <ui:Button text="Graphics" parse-escape-sequences="true" display-tooltip-when-elided="true" name="graphics_button" style="width: 20%; margin-top: 10px; margin-right: 6px; height: 100%; align-self: auto; margin-bottom: 10px;" />
+            <ui:Button text="Sound" parse-escape-sequences="true" display-tooltip-when-elided="true" name="sound_button" style="width: 20%; margin-top: 10px; margin-right: 6px; height: 100%; align-self: auto; margin-bottom: 10px;" />
+            <ui:Button text="Gameplay" parse-escape-sequences="true" display-tooltip-when-elided="true" name="gameplay_button" style="width: 20%; margin-top: 10px; margin-right: 6px; height: 100%; align-self: auto; margin-bottom: 10px;" />
+        </ui:GroupBox>
+        <ui:VisualElement name="something" style="flex-grow: 1;" />
+        <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="back_button" style="align-self: center; width: 20%; height: 5%; margin-bottom: 40px; margin-top: 16px;" />
+    </ui:VisualElement>
+</ui:UXML>

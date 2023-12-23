@@ -25,12 +25,14 @@ public class DialogManager : MonoBehaviour
     public void QuitDialog() // Можно ли прерывать диалоги? Создать флаг прерываемости диалогов
     {
         currentDialog.Quit(); // Тут вся логика при выходе
-        currentDialog = null; 
+        currentDialog = null;
+        Time.timeScale = 1f;
         currentLine = 0;
     }
 
     public void InitiateDialog(GameObject[] participants, int index) // Участники и номер диалога между участниками (может быть не один диалог между участниками)
     {
+        Time.timeScale = 0;
         currentLine = 0;
         currentDialog = new Dialog(participants, index);
     }

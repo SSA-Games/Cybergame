@@ -10,6 +10,8 @@ public class PauseUIScript: MonoBehaviour
     private GroupBox SavesList;
     private Label SaveStatusLabel;
 
+    public GameObject OptionsUI; // UI Options prefab to create
+
     Button ButtonResume;
     Button ButtonOptions;
     Button ButtonExit;
@@ -17,11 +19,13 @@ public class PauseUIScript: MonoBehaviour
     Button ButtonLoadSave;
     Button ButtonLoad;
 
-    GameObject Player;
+    private GameObject Player;
+    private UIManager uim;
     private Button selectedSave;
     private void Awake()
     {
         Player = GameObject.Find("Player");
+        uim = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
     public void OnEnable()
@@ -41,17 +45,22 @@ public class PauseUIScript: MonoBehaviour
         SaveStatusLabel = root.Q<Label>("savestatus_label");
 
         //Обработка событий
-        ButtonResume.clicked += () => PauseButton_Clicked();
+        ButtonResume.clicked += () => ResumeButton_Clicked();
         ButtonExit.clicked += () => ExitButton_Clicked();
         ButtonQuickSave.clicked += () => QuickSaveButton_Clicked();
         ButtonLoadSave.clicked += () => LoadSaveButton_Clicked();
         ButtonLoad.clicked += () => LoadButton_Clicked();
+        ButtonOptions.clicked += () => OptionsButton_Clicked();
     }
 
-    private void PauseButton_Clicked()
+    private void ResumeButton_Clicked()
     {
-        PauseControl.isPaused = false;
-        Time.timeScale = 1f;
+        Player.GetComponent<PauseControl>().SetPause(false);
+    }
+
+    private void OptionsButton_Clicked()
+    {
+        Instantiate(OptionsUI);
     }
 
     private void ExitButton_Clicked()

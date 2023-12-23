@@ -5,7 +5,7 @@ using System.IO;
 using System;
 using System.Linq;
 
-public class Dialog //Также еще нужно будет добавить систему выборов!
+public class Dialog 
 {
     /* Объект диалога создается при инициации диалога.
     * При создании в диалог передаются его участники и номер диалога между ними.
@@ -21,12 +21,10 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
     // ...
     // ИДЕЯ: в файле диалога будут содержаться указания о том, увеличивать ли счетчик index при следующем взаимодействии этих участников
 
-    //UI GameObjects
-    private GameObject dialogUIObject; 
-    private GameObject hudUIObject;
-    private DIalogUI dialogUI;
 
-    private DialogManager dm; // Ссылка на Dialog Manager
+    private DialogManager dm; // Ссылка на Dialog Manager, интерфейс диалога с игрой
+    private UIManager uim;    // Для включения/выключения UI диалога
+    private DialogUIScript DialogUI; // Хранилище UI диалога
 
     private List<GameObject> participants = new List<GameObject>(); // Список участвующих в диалоге объектов
     private string fileName; // Имя файла с диалогом
@@ -37,6 +35,7 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
     public Dialog(GameObject[] participants, int index)
     {
         dm = GameObject.Find("GameManager").GetComponent<DialogManager>();
+        uim = GameObject.Find("UIManager").GetComponent<UIManager>();
         fileName = "";
         foreach (GameObject p in participants)
         {
@@ -55,13 +54,10 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
         }
 
         // Участники и их реплики загружены. Теперь обращаемся к UI:
-        dialogUIObject = GameObject.FindObjectsOfType<GameObject>(true).Where(obj => obj.name == "DialogUI").ToArray()[0];
-        hudUIObject = GameObject.FindObjectsOfType<GameObject>(true).Where(obj => obj.name == "HUD").ToArray()[0];
-        dialogUI = dialogUIObject.GetComponent<DIalogUI>();
 
         // Включаем и выключаем необходимый UI
-        dialogUIObject.SetActive(true);
-        hudUIObject.SetActive(false);
+        DialogUI = uim.LoadUI("DialogUI").GetComponent<DialogUIScript>();
+        uim.UnloadUI("HUD");
 
         //Обновляем содержимое окошка диалога
         Refresh();
@@ -72,9 +68,9 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
         // Заменяем тексты и спрайты
         string name = lines[dm.currentLine].Split(";")[0];
         string text = lines[dm.currentLine].Split(";")[1];
-        dialogUI.SetCharacterName(lines[dm.currentLine].Split(";")[0]);
-        dialogUI.SetCharacterText(lines[dm.currentLine].Split(";")[1]);
-        dialogUI.SetCharacterImage(dm.GetCharacterSpriteByName(name));
+        DialogUI.SetCharacterName(lines[dm.currentLine].Split(";")[0]);
+        DialogUI.SetCharacterText(lines[dm.currentLine].Split(";")[1]);
+        DialogUI.SetCharacterImage(dm.GetCharacterSpriteByName(name));
     }
 
     public int GetTotalLines() // Всего фраз в файле
@@ -93,7 +89,7 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
             }
         }
         // Возвращаем UI на место
-        dialogUIObject.SetActive(false);
-        hudUIObject.SetActive(true);
+        uim.LoadUI("HUD");
+        uim.UnloadUI("DialogUI");
     }
 }
