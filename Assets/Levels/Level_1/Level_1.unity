@@ -150,7 +150,7 @@ PrefabInstance:
     - target: {fileID: -4986703165547901759, guid: 32df37bd3a03be140bbcf1b5cbc89961, type: 3}
       propertyPath: LootList.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 8a67e6e704c8efb47afd21ad51d70a15, type: 2}
+      objectReference: {fileID: 11400000, guid: f76bf7d08b3b6354882607f9e74bbe4a, type: 2}
     - target: {fileID: 3165553640163545476, guid: 32df37bd3a03be140bbcf1b5cbc89961, type: 3}
       propertyPath: m_LocalScale.x
       value: 5.89

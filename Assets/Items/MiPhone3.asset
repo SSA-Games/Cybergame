@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb811f968388924893dda4f1fd787b0, type: 3}
   m_Name: MiPhone3
   m_EditorClassIdentifier: 
-  DropChance: 0
-  Sprite: {fileID: 0}
+  DropChance: 100
+  Sprite: {fileID: 21300000, guid: 749568ff6b7337149b8846b3a82ad40a, type: 3}
+  ItemRewards: []
