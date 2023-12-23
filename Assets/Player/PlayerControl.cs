@@ -16,11 +16,13 @@ public class PlayerControl : MonoBehaviour
     private float[] cooldowns = new float[] { 0, 0, 0 }; //Таймер кулдаунов
 
     private PlayerInstance player;
+    private DialogManager dm;
     private Rigidbody2D rb;
     private Collider2D coll;
 
     void Start()
     {
+        dm = GameObject.Find("GameManager").GetComponent<DialogManager>();
         player = GetComponent<PlayerInstance>();
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
@@ -37,9 +39,9 @@ public class PlayerControl : MonoBehaviour
         // Если игрок занят, его передвижение отключено. Тут своя система управления
         if (player.InDialog)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
-                player.ContinueDialog();
+                dm.ContinueDialog();
             }
         }
         else // Если игрок не занят, обычная система управления:

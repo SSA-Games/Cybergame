@@ -4,7 +4,7 @@ using UnityEngine;
 
 abstract public class CharacterInstance : MonoBehaviour
 {
-    public List<Skill> AcquiredSkills;
+    public List<Skill> AcquiredSkills; // Список скиллов, которыми обладает персонаж
     public string Name = "CHARACTER_NAME";
     public float Health;
     public float Energy;
@@ -12,16 +12,21 @@ abstract public class CharacterInstance : MonoBehaviour
     // Флаги состояния
     public bool Invulnurable = false; // Проходят ли по персонажу попадания (ставить true для NPC не в бою)
     public bool Talkable = false; // Можно ли поговорить с персонажем
-    public bool InBattle = false;
+    public bool InBattle = false; 
     public bool InDialog = false; // Находится ли персонаж в диалоге (нужно для управления персонажем)
 
-    public GameObject FightModeTarget; // Цель в бою
-    public GameObject skillPrefab; 
+    protected GameObject Target; // Цель в бою
+    public GameObject skillPrefab; // Экземпляр пустого скилла.
 
+    protected DialogManager dm;
 
-    protected virtual void Update()
+    protected virtual void Start()
     {
-        if (Health <= 0)
+        dm = GameObject.Find("GameManager").GetComponent<DialogManager>(); // Доступ к менеджеру диалогов
+    }
+    protected virtual void Update() 
+    {
+        if (Health <= 0) // Проверка на смерть
         {
             Die();
         }
@@ -52,7 +57,7 @@ abstract public class CharacterInstance : MonoBehaviour
         }
     }
 
-    public void GetHitBySkill(Skill skill)
+    public void GetHitBySkill(Skill skill) // При попадании по объекту скилла, вызвать эту функцию
     {
         if (!Invulnurable)
         {
@@ -65,8 +70,8 @@ abstract public class CharacterInstance : MonoBehaviour
         Destroy(gameObject); // 死
     }
 
-    // Поиск умения в списке приобритенных умений (по имени) -------
-    protected Skill FindSkillByName(string name)
+    // Поиск умения в списке приобретенных умений (по имени) -------
+    protected Skill GetAcquiredSkillByName(string name)
     {
         foreach (Skill skill in AcquiredSkills)
         {
@@ -75,8 +80,9 @@ abstract public class CharacterInstance : MonoBehaviour
                 return skill;
             }
         }
-        Debug.Log("Couldn't find the skill in list");
+        Debug.Log("Couldn't find the skill in list of acquired skills");
         return null;
     }
+
     // -------------------------------------------------------------
 }

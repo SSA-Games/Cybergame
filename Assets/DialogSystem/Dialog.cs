@@ -14,24 +14,29 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
     * Происходим по строкам, загружая имя участника и его строку в lines
     */
 
-    // Структура файла диалога:
-    // speaker; line
-    // speaker; line
-    // ...
 
-    private GameObject dialogUIObject;  //UI GameObjects
+    // Структура файла диалога:
+    // speaker;line
+    // speaker;line
+    // ...
+    // ИДЕЯ: в файле диалога будут содержаться указания о том, увеличивать ли счетчик index при следующем взаимодействии этих участников
+
+    //UI GameObjects
+    private GameObject dialogUIObject; 
     private GameObject hudUIObject;
     private DIalogUI dialogUI;
 
-    private List<GameObject> participants = new List<GameObject>();
-    private string fileName;
-    private List<string> lines = new List<string>();
+    private DialogManager dm; // Ссылка на Dialog Manager
 
-    private int currentLine;
+    private List<GameObject> participants = new List<GameObject>(); // Список участвующих в диалоге объектов
+    private string fileName; // Имя файла с диалогом
+    private List<string> lines = new List<string>(); // Список фраз диалога
+
+    // ВНИМАНИЕ! НАЗВАНИЕ СПРАЙТА ПЕРСОНАЖА ДОЛЖНО СОВПАДАТЬ С ИМЕНЕМ ПЕРСОНАЖА В ФАЙЛЕ
 
     public Dialog(GameObject[] participants, int index)
     {
-        currentLine = 0;
+        dm = GameObject.Find("GameManager").GetComponent<DialogManager>();
         fileName = "";
         foreach (GameObject p in participants)
         {
@@ -48,40 +53,38 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
         {
             lines.Add(line);
         }
-        Debug.Log(lines[0]);
 
         // Участники и их реплики загружены. Теперь обращаемся к UI:
-        // Включаем и выключаем необходимый UI
         dialogUIObject = GameObject.FindObjectsOfType<GameObject>(true).Where(obj => obj.name == "DialogUI").ToArray()[0];
         hudUIObject = GameObject.FindObjectsOfType<GameObject>(true).Where(obj => obj.name == "HUD").ToArray()[0];
+        dialogUI = dialogUIObject.GetComponent<DIalogUI>();
+
+        // Включаем и выключаем необходимый UI
         dialogUIObject.SetActive(true);
         hudUIObject.SetActive(false);
 
+        //Обновляем содержимое окошка диалога
+        Refresh();
+    }
+
+    public void Refresh() // Обновляем содержание окна диалога
+    {
         // Заменяем тексты и спрайты
-        dialogUI = dialogUIObject.GetComponent<DIalogUI>();
-        dialogUI.SetCharacterName(lines[0].Split(";")[0]);
-        dialogUI.SetCharacterText(lines[0].Split(";")[1]);
-        // Еще должна загружаться картинка... (вставить позже)
+        string name = lines[dm.currentLine].Split(";")[0];
+        string text = lines[dm.currentLine].Split(";")[1];
+        dialogUI.SetCharacterName(lines[dm.currentLine].Split(";")[0]);
+        dialogUI.SetCharacterText(lines[dm.currentLine].Split(";")[1]);
+        dialogUI.SetCharacterImage(dm.GetCharacterSpriteByName(name));
     }
 
-    public void Advance() // Продвижение по диалогу к следующей фразе
+    public int GetTotalLines() // Всего фраз в файле
     {
-        currentLine++;
-        if (currentLine < lines.Count)  // Проверяем, не закончили мы диалог
-        {
-            // Заменяем тексты и спрайты
-            dialogUI.SetCharacterName(lines[currentLine].Split(";")[0]);
-            dialogUI.SetCharacterText(lines[currentLine].Split(";")[1]);
-        }
-        else
-        {
-            Quit();
-        }
+        return lines.Count;
     }
 
-    private void Quit()  // Выход из диалога
+    public void Quit()  // При выходе из диалога
     {
-        // Если среди участников есть игрок, Talking = false;
+        // Если среди участников есть игрок, флаг состояния InDialog  = false;
         foreach (GameObject obj in participants)
         {
             if (obj.tag == "Player")
@@ -89,6 +92,7 @@ public class Dialog //Также еще нужно будет добавить систему выборов!
                 obj.GetComponent<PlayerInstance>().InDialog = false;
             }
         }
+        // Возвращаем UI на место
         dialogUIObject.SetActive(false);
         hudUIObject.SetActive(true);
     }

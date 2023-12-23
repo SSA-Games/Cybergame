@@ -6,18 +6,16 @@ public class PlayerInstance : CharacterInstance
 {
     private List<GameObject> interactableObjects = new List<GameObject>();
     private GameObject closestInteractableObject;
-    private Dialog dialog;
 
     public List<Item> Inventory = new List<Item>();
     public Skill[] skillSlots = new Skill[3];
 
-    protected void Start()
+    protected override void Start()
     {
+        base.Start();
         Debug.Log("1) Нужно что-то сделать с детектированием объектов. Убрать Rigidbody и переделать управление движением?");
-        Debug.Log("2) Добавить появление спрайтов персонажей при диалогах");
         //DEBUG
-        AcquiredSkills.Add(FindSkillByName("Pantheon Q DEBUG"));
-        ChangeSkillSlot(0, FindSkillByName("Pantheon Q DEBUG"));
+        ChangeSkillSlot(0, GetAcquiredSkillByName("Pantheon Q DEBUG")); // Добвяляем изученный скилл в скиллслот
         //DEBUG
     }
 
@@ -25,7 +23,7 @@ public class PlayerInstance : CharacterInstance
     {
         base.Update(); // Check if we are dead
 
-        // Перерасчет расстояния до объектов в InteractableObjects
+        // Перерасчет расстояния до объектов в InteractableObjects (Мы всегда взаимодействуем с ближайшим)
         foreach(GameObject obj in interactableObjects)
         {
             if (Vector3.Distance(transform.position, obj.transform.position) < Vector3.Distance(transform.position, closestInteractableObject.transform.position))
@@ -35,9 +33,9 @@ public class PlayerInstance : CharacterInstance
         }
     }
 
-    public void ChangeSkillSlot(int slotNumber, Skill skill)
+    public void ChangeSkillSlot(int slotNumber, Skill skill) // Поставить умение в скиллслот
     {
-        if (AcquiredSkills.Contains(skill))
+        if (AcquiredSkills.Contains(skill)) // ...но только если оно изучено
         {
             skillSlots[slotNumber] = skill;
         }
@@ -49,30 +47,26 @@ public class PlayerInstance : CharacterInstance
 
     public void Interact() // Мы взаимодействуем с ближайшим предметом из нашего окружения
     {
-        if (closestInteractableObject != null)
+        if (closestInteractableObject != null) // Если нашли объект
         {
-            if (closestInteractableObject.tag == "Item")
+            if (closestInteractableObject.tag == "Item") // Если объект - предмет
             {
                 //Подбор предмета
                 ItemInstance item = closestInteractableObject.GetComponent<ItemInstance>();
                 Inventory.Add(item.GetItemInfo());
                 Destroy(closestInteractableObject);
             }
-            else if (closestInteractableObject.tag == "NPC")
+            else if (closestInteractableObject.tag == "NPC") // Если объект - NPC
             {
                 //Взимодействие с NPC
                 InDialog = true;
                 NPCInstance NPC = closestInteractableObject.GetComponent<NPCInstance>();
                 GameObject[] participants = new GameObject[2] { this.gameObject, closestInteractableObject };
-                dialog = new Dialog(participants, 0);
+                dm.InitiateDialog(participants, 0);
             }
         }
     }
 
-    public void ContinueDialog()
-    {
-        dialog.Advance();
-    }
 
     private void OnTriggerEnter2D(Collider2D collision) // При входе в радиус интерактивности
     {
@@ -96,8 +90,9 @@ public class PlayerInstance : CharacterInstance
             closestInteractableObject = interactableObjects[0];
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision) // При выходе из радиуса интерактивности
     {
+        // Если то, что нас покидает было в списке объектов для взаимодействия, удаляем оттуда.
         if (interactableObjects.Contains(collision.gameObject))
         {
             interactableObjects.Remove(collision.gameObject);

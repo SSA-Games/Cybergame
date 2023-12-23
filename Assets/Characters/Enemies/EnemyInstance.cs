@@ -4,19 +4,22 @@ using UnityEngine;
 
 abstract public class EnemyInstance : CharacterInstance
 {
+    // БАЗОВЫЙ КЛАСС ВРАГА
     public GameObject itemPrefab;
     public List<Item> LootList = new List<Item>();
     private void Awake()
     {
-        FightModeTarget = GameObject.Find("Player");
+        Target = GameObject.Find("Player"); // По умолчанию, цель - игрок
     }
+
+    // ЗДЕСЬ БУДЕТ НАХОДИТЬСЯ УНИВЕРСАЛЬНАЯ БОЕВАЯ ЛОГИКА ВРАГОВ.
     protected override void Update()
     {
         base.Update();
         //Patrolling the area until seeing the player
         if (InBattle)
         {
-            if (FightModeTarget != null) // Checking if target is not dead
+            if (Target != null) // Checking if target is not dead
             {
                 AttackTarget();
             }
@@ -33,6 +36,7 @@ abstract public class EnemyInstance : CharacterInstance
 
     protected virtual void CheckForTarget()
     {
+        //Вероятно, у них будут какие-то области обзора. У каждого - своя.
         //If target discovered, set InBattle = true
     }
 
@@ -54,7 +58,7 @@ abstract public class EnemyInstance : CharacterInstance
                 Debug.Log("Item dropped!");
             }
         }
-        // Destroy itself
+        // Finally, die
         base.Die();
     }
 }

@@ -32,6 +32,7 @@ public class DIalogUI : MonoBehaviour
 
     public void SetCharacterImage(Sprite sprite)
     {
+        characterImage.style.backgroundImage = Background.FromSprite(sprite);
         //Должна вставляться картинка... (добавить позже)
     }
 }
