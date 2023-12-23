@@ -36,7 +36,7 @@ abstract public class CharacterInstance : MonoBehaviour
     {
         Energy -= skill.Cost;
 
-        switch (skill.Type) {                   // Полиморфизм пошел нахуй, у меня не вышло.
+        switch (skill.Type) {                   // Позже изменю чтобы было покрасивее
             case SkillType.CLOSE_RANGE:
                 // Инстанцирование префаба скилла skill
                 GameObject skillGameObject = Instantiate(skillPrefab);

@@ -23,4 +23,8 @@ public class Skill : ScriptableObject
     // Other Params
 
 }
-public enum SkillType { HACK, CLOSE_RANGE, HIGH_RANGE_DOT, HIGH_RANGE_DIRECTIONAL }
+public enum SkillType { 
+    HACK,                   // Целеуказание: по всем в радиусе, либо мышью (при замедлении времени?). Применение эффектов/смена поведения объектов на карте (не только врагов)
+    CLOSE_RANGE,            // Удар чем-либо. Создается объект с коллайдером и анимацией в направлении удара.
+    HIGH_RANGE              // Скиллшот. Создается движущийся объект с коллайдером и анимацией, направленный в точку курсора
+}

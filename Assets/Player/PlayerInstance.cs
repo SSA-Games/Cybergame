@@ -14,6 +14,7 @@ public class PlayerInstance : CharacterInstance
     {
         base.Start();
         Debug.Log("1) Нужно что-то сделать с детектированием объектов. Убрать Rigidbody и переделать управление движением?");
+        Debug.Log("Если что, подбирать предметы и говорить на кнопочку F");
         //DEBUG
         ChangeSkillSlot(0, GetAcquiredSkillByName("Pantheon Q DEBUG")); // Добвяляем изученный скилл в скиллслот
         //DEBUG

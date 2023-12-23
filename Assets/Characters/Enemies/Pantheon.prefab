@@ -54,10 +54,11 @@ MonoBehaviour:
   Invulnurable: 0
   Talkable: 0
   InBattle: 0
-  FightModeTarget: {fileID: 0}
+  InDialog: 0
   skillPrefab: {fileID: 0}
   itemPrefab: {fileID: 0}
-  LootList: []
+  LootList:
+  - {fileID: 0}
 --- !u!212 &-3379078162574781707
 SpriteRenderer:
   m_ObjectHideFlags: 0
