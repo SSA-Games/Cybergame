@@ -5,7 +5,9 @@
             <ui:Button text="Sound" parse-escape-sequences="true" display-tooltip-when-elided="true" name="sound_button" style="width: 20%; margin-top: 10px; margin-right: 6px; height: 100%; align-self: auto; margin-bottom: 10px;" />
             <ui:Button text="Gameplay" parse-escape-sequences="true" display-tooltip-when-elided="true" name="gameplay_button" style="width: 20%; margin-top: 10px; margin-right: 6px; height: 100%; align-self: auto; margin-bottom: 10px;" />
         </ui:GroupBox>
-        <ui:VisualElement name="something" style="flex-grow: 1;" />
+        <ui:VisualElement name="graphics_section" style="flex-grow: 1; width: 100%;" />
+        <ui:VisualElement name="gameplay_section" style="flex-grow: 1; width: 100%; display: none;" />
+        <ui:VisualElement name="sound_section" style="flex-grow: 1; width: 100%; display: none;" />
         <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="back_button" style="align-self: center; width: 20%; height: 5%; margin-bottom: 40px; margin-top: 16px;" />
     </ui:VisualElement>
 </ui:UXML>
