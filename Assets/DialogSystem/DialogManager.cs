@@ -22,8 +22,9 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    public void QuitDialog() // ћожно ли прерывать диалоги? —оздать флаг прерываемости диалогов
+    public void QuitDialog() 
     {
+        GameObject.Find("Player").GetComponent<PauseControl>().CanPause = true; //Ќельз€ ставить на паузу во врем€ диалогов
         currentDialog.Quit(); // “ут вс€ логика при выходе
         currentDialog = null;
         Time.timeScale = 1f;
@@ -32,6 +33,7 @@ public class DialogManager : MonoBehaviour
 
     public void InitiateDialog(GameObject[] participants, int index) // ”частники и номер диалога между участниками (может быть не один диалог между участниками)
     {
+        GameObject.Find("Player").GetComponent<PauseControl>().CanPause = false; //Ќельз€ ставить на паузу во врем€ диалогов
         Time.timeScale = 0;
         currentLine = 0;
         currentDialog = new Dialog(participants, index);

@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class OptionsMenuScript : MonoBehaviour
 {
     private VisualElement root;
-    private Button CancelButton;
+    private Button BackButton;
 
     private Button GraphicsButton;
     private Button GameplayButton;
@@ -17,35 +17,50 @@ public class OptionsMenuScript : MonoBehaviour
     private VisualTreeAsset SoundSection;
     private TemplateContainer currentSection;
 
+    private UIManager UImanager;
+    private PauseControl pauseControl; // PauseControl.CanPause = false
 
+    private void Awake()
+    {
+        UImanager = GameObject.Find("UIManager").GetComponent<UIManager>();
+        pauseControl = GameObject.Find("Player").GetComponent<PauseControl>();
+    }
     private void OnEnable()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
-        CancelButton = root.Q<Button>("cancel_button");
+        BackButton = root.Q<Button>("back_button");
 
-        currentSection = GraphicsSection.Instantiate(Application.dataPath + "");
+        // currentSection = GraphicsSection.Instantiate(Application.dataPath + "");
 
         GraphicsButton = root.Q<Button>("graphics_button");
         GameplayButton = root.Q<Button>("gameplay_button");
         SoundButton = root.Q<Button>("sound_button");
 
-
-        GraphicsButton.clicked += GraphicsSectionChosen;
-        GameplayButton.clicked += GameplaySectionChosen;
-        SoundButton.clicked += SoundSectionChosen;
+        BackButton.clicked += () => BackButton_Clicked();
+        GraphicsButton.clicked += () => GraphicsSection_Chosen();
+        GameplayButton.clicked += () => GameplaySection_Chosen();
+        SoundButton.clicked += () => SoundSection_Chosen();
     }
 
-    void GraphicsSectionChosen() // Load Graphics section
+    void BackButton_Clicked()
+    {
+        pauseControl.CanPause = true;
+        UImanager.LoadUI("HUD");
+        UImanager.LoadUI("PauseUI");
+        UImanager.UnloadUI("OptionsUI");
+    }
+
+    void GraphicsSection_Chosen() // Load Graphics section
     {
 
     }
 
-    void GameplaySectionChosen() // Load Gameplay section
+    void GameplaySection_Chosen() // Load Gameplay section
     {
 
     }
 
-    void SoundSectionChosen() // Load Sound section
+    void SoundSection_Chosen() // Load Sound section
     {
 
     }

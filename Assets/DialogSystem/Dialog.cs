@@ -23,7 +23,7 @@ public class Dialog
 
 
     private DialogManager dm; // Ссылка на Dialog Manager, интерфейс диалога с игрой
-    private UIManager uim;    // Для включения/выключения UI диалога
+    private UIManager UImanager;    // Для включения/выключения UI диалога
     private DialogUIScript DialogUI; // Хранилище UI диалога
 
     private List<GameObject> participants = new List<GameObject>(); // Список участвующих в диалоге объектов
@@ -35,7 +35,7 @@ public class Dialog
     public Dialog(GameObject[] participants, int index)
     {
         dm = GameObject.Find("GameManager").GetComponent<DialogManager>();
-        uim = GameObject.Find("UIManager").GetComponent<UIManager>();
+        UImanager = GameObject.Find("UIManager").GetComponent<UIManager>();
         fileName = "";
         foreach (GameObject p in participants)
         {
@@ -56,8 +56,8 @@ public class Dialog
         // Участники и их реплики загружены. Теперь обращаемся к UI:
 
         // Включаем и выключаем необходимый UI
-        DialogUI = uim.LoadUI("DialogUI").GetComponent<DialogUIScript>();
-        uim.UnloadUI("HUD");
+        DialogUI = UImanager.LoadUI("DialogUI").GetComponent<DialogUIScript>();
+        UImanager.UnloadUI("HUD");
 
         //Обновляем содержимое окошка диалога
         Refresh();
@@ -89,7 +89,7 @@ public class Dialog
             }
         }
         // Возвращаем UI на место
-        uim.LoadUI("HUD");
-        uim.UnloadUI("DialogUI");
+        UImanager.LoadUI("HUD");
+        UImanager.UnloadUI("DialogUI");
     }
 }

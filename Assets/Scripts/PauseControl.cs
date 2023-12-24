@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class PauseControl : MonoBehaviour
 {
-    public UIManager uim;
+    public UIManager UImanager;
+    public bool CanPause = true; // Может ли игрок нажать на паузу сейчас
+
     private bool isPaused = false; // Статус паузы
+
 
     private void Awake()
     {
-        uim = GameObject.Find("UIManager").GetComponent<UIManager>();
+        UImanager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
     void Update()
     {
         //Проверка нажатия ESC
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && CanPause == true ) // Если игрок занят, клавиша не работает
         {
             SetPause(!isPaused);
         }
@@ -27,13 +30,13 @@ public class PauseControl : MonoBehaviour
         {
             isPaused = true;
             Time.timeScale = 0f;
-            uim.LoadUI("PauseUI");
+            UImanager.LoadUI("PauseUI");
         }
         else
         {
             isPaused = false;
             Time.timeScale = 1f;
-            uim.UnloadUI("PauseUI");
+            UImanager.UnloadUI("PauseUI");
         }
     }
 

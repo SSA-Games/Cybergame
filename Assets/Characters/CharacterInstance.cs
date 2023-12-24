@@ -9,7 +9,7 @@ abstract public class CharacterInstance : MonoBehaviour
     public float Health;
     public float Energy;
 
-    // Флаги состояния
+    // Флаги состояния персонажа
     public bool Invulnurable = false; // Проходят ли по персонажу попадания (ставить true для NPC не в бою)
     public bool Talkable = false; // Можно ли поговорить с персонажем
     public bool InBattle = false; 

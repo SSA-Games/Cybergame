@@ -20,12 +20,12 @@ public class PauseUIScript: MonoBehaviour
     Button ButtonLoad;
 
     private GameObject Player;
-    private UIManager uim;
+    private UIManager UImanager;
     private Button selectedSave;
     private void Awake()
     {
         Player = GameObject.Find("Player");
-        uim = GameObject.Find("UIManager").GetComponent<UIManager>();
+        UImanager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
     public void OnEnable()
@@ -60,7 +60,10 @@ public class PauseUIScript: MonoBehaviour
 
     private void OptionsButton_Clicked()
     {
-        Instantiate(OptionsUI);
+        UImanager.LoadUI("OptionsUI");
+        UImanager.UnloadUI("PauseUI");
+        UImanager.UnloadUI("HUD");
+        Player.GetComponent<PauseControl>().CanPause = false;
     }
 
     private void ExitButton_Clicked()
@@ -70,18 +73,18 @@ public class PauseUIScript: MonoBehaviour
 
     private void QuickSaveButton_Clicked() //Вызываем логику быстрого сохранения и выводим сверху справа статус сохранения
     {
-        SaveStatusLabel.style.display = DisplayStyle.Flex;
+        SaveStatusLabel.style.visibility = Visibility.Visible;
         string saveName = SaveLoadManager.QuickSave();
         SaveStatusLabel.text = "Successfully saved as " + saveName;
-        StartCoroutine(PauseControl.waiter(3));
-        SaveStatusLabel.style.display = DisplayStyle.None;
+        StartCoroutine(PauseControl.waiter(3)); // Подождать три секунды
+        SaveStatusLabel.style.visibility = Visibility.Hidden;
         SaveStatusLabel.text = "Saving...";
     }
 
     private void LoadSaveButton_Clicked()
     {
-        SavesList.style.display = DisplayStyle.Flex;
-        ButtonLoad.style.display = DisplayStyle.Flex;
+        SavesList.style.visibility = Visibility.Visible;
+        ButtonLoad.style.visibility = Visibility.Visible;
         
         // Загрузка сохранений в кнопки
 
@@ -94,8 +97,8 @@ public class PauseUIScript: MonoBehaviour
 
     private void LoadButton_Clicked()
     {
-        SavesList.style.display = DisplayStyle.None;
-        ButtonLoad.style.display = DisplayStyle.None;
+        SavesList.style.visibility = Visibility.Hidden;
+        ButtonLoad.style.visibility = Visibility.Hidden;
         if (selectedSave != null)
         {
             SaveLoadManager.LoadSave(selectedSave.text); //Передаем название сохранения в метод для загрузки
@@ -104,10 +107,12 @@ public class PauseUIScript: MonoBehaviour
 
     private void AddSaveToList(string name) //Добавляем сохранение в UI
     {
+        // ПОЗЖЕ СДЕЛАТЬ ТАК, ЧТОБЫ МАКСИМУМ БЫЛО 8
         Button Save = new Button();
         SavesList.Add(Save);
         Save.text = name.Substring(0, name.Length - 5);
         Save.style.width = Length.Percent(100);
+        Save.style.height = Length.Percent(8);
         Save.clicked += () =>
         {
             Debug.Log("now selected button " + Save.text);

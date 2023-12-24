@@ -1,12 +1,18 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement name="canvas" style="flex-grow: 1; left: 0; top: 0;">
-        <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="options_button" name="options_button" style="left: 25px; top: 270px; width: 350px; height: 60px; position: absolute;" />
-        <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="exit_button" name="exit_button" style="left: 25px; top: 411px; width: 350px; height: 60px;" />
-        <ui:Button text="Resume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="resume_button" style="height: 60px; width: 350px; left: 25px; top: -20px;" />
-        <ui:Button text="Quick Save" parse-escape-sequences="true" display-tooltip-when-elided="true" name="quicksave_button" style="width: 350px; height: 60px; left: 25px; top: -10px;" />
-        <ui:Label tabindex="-1" text="Saving..." parse-escape-sequences="true" display-tooltip-when-elided="true" name="savestatus_label" style="align-self: flex-end; top: -155px; color: rgb(255, 255, 255); display: none; width: 350px; height: 60px;" />
-        <ui:Button text="Load Save" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="options_button" name="loadsave_button" style="left: 25px; top: 0; width: 350px; height: 60px;" />
-        <ui:GroupBox name="saves_list" style="position: absolute; justify-content: flex-start; align-self: center; align-items: center; height: 85%; width: 311px; display: none;" />
-        <ui:Button text="Load" parse-escape-sequences="true" display-tooltip-when-elided="true" name="load_button" style="align-self: center; bottom: -265px; width: 350px; display: none; height: 60px;" />
+    <ui:VisualElement name="background" style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement name="pause_menu" style="flex-grow: 1; left: 0; top: 0; align-self: auto; align-items: flex-start; justify-content: flex-start;">
+            <ui:Button text="Resume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="resume_button" style="width: 60%; height: 6%; margin-top: 10px;" />
+            <ui:Button text="Quick Save" parse-escape-sequences="true" display-tooltip-when-elided="true" name="quicksave_button" style="width: 60%; height: 63px; margin-top: 10px;" />
+            <ui:Button text="Load Save" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="options_button" name="loadsave_button" style="width: 60%; height: 6%; margin-top: 10px;" />
+            <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="options_button" name="options_button" style="width: 60%; height: 6%; margin-top: 10px;" />
+            <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="exit_button" name="exit_button" style="width: 60%; height: 6%; margin-top: 80px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="saves_menu" style="flex-grow: 1; align-items: flex-start; justify-content: center; flex-wrap: nowrap; flex-direction: row;">
+            <ui:GroupBox name="saves_list" focusable="false" style="position: absolute; justify-content: flex-start; align-self: auto; align-items: flex-start; height: 67%; width: 60%; display: flex; visibility: hidden;" />
+            <ui:Button text="Load" parse-escape-sequences="true" display-tooltip-when-elided="true" name="load_button" style="align-self: center; bottom: -265px; width: 60%; display: flex; height: 6%; visibility: hidden;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="info_menu" style="flex-grow: 1;">
+            <ui:Label tabindex="-1" text="Saving..." parse-escape-sequences="true" display-tooltip-when-elided="true" name="savestatus_label" style="align-self: flex-end; color: rgb(255, 214, 1); display: flex; width: 24%; height: 5%; font-size: 34px; visibility: hidden;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
