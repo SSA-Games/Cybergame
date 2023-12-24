@@ -81,7 +81,8 @@ public class LoadGameUIScript : MonoBehaviour
         Button Save = new Button();
         SavesList.Add(Save);
         Save.text = name.Substring(0, name.Length - 5);
-        Save.style.width = Length.Percent(100);
+        Save.style.width = Length.Percent(80);
+        Save.style.height = Length.Percent(5);
         Save.clicked += () =>
         {
             Debug.Log("now selected button " + Save.text);

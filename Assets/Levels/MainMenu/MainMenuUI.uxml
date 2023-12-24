@@ -1,8 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Levels/MainMenu/Background.jpg?fileID=2800000&amp;guid=13063d4332f6b6f469ed733b91d433f3&amp;type=3#Background&apos;);">
-        <ui:Button text="New Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="new_game_button" style="width: 360px; align-self: center; align-items: auto; top: 20%; position: absolute;" />
-        <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="exit_button" style="width: 360px; align-self: center; align-items: auto; top: 60%; position: absolute;" />
-        <ui:Button text="Load Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="load_game_button" style="width: 360px; align-self: center; align-items: auto; top: 30%; position: absolute;" />
-        <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="options_button" style="width: 360px; align-self: center; align-items: auto; top: 40%; position: absolute;" />
+    <ui:VisualElement name="background" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Levels/MainMenu/Background.jpg?fileID=2800000&amp;guid=13063d4332f6b6f469ed733b91d433f3&amp;type=3#Background&apos;); justify-content: center; align-items: center;">
+        <ui:Button text="New Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="new_game_button" style="width: 20%; align-self: auto; align-items: auto; margin-bottom: 24px; height: 5%;" />
+        <ui:Button text="Load Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="load_game_button" style="width: 20%; align-self: auto; align-items: auto; margin-bottom: 24px; height: 53px;" />
+        <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="options_button" style="width: 20%; align-self: auto; align-items: auto; margin-bottom: 24px; height: 5%;" />
+        <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="exit_button" style="width: 20%; align-self: auto; align-items: auto; margin-top: 48px; height: 5%;" />
     </ui:VisualElement>
 </ui:UXML>

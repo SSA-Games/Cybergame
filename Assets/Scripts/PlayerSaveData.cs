@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerSaveData
+public class SaveData
 {
-    public float[] position = new float[3];
-    public string level_name;
+    public float Health;
+    public float Energy;
+    public float[] Position = new float[3];
+    public string LevelName;
 
-    public PlayerSaveData(GameObject player)
+    public List<Item> Inventory = new List<Item>();
+    public List<Skill> AcquiredSkills = new List<Skill>();
+
+    public SaveData(GameObject player)
     {
-        position[0] = player.transform.position.x;
-        position[1] = player.transform.position.y;
-        position[2] = player.transform.position.z;
+        Position[0] = player.transform.position.x;
+        Position[1] = player.transform.position.y;
+        Position[2] = player.transform.position.z;
 
-        level_name = player.scene.name;
+        LevelName = player.scene.name;
+
+        PlayerInstance playerInstance = player.GetComponent<PlayerInstance>();
+        Inventory = playerInstance.Inventory;
+        AcquiredSkills = playerInstance.AcquiredSkills;
     }
 }

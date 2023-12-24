@@ -1,9 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1; align-items: auto; justify-content: center; background-image: url(&apos;project://database/Assets/Levels/MainMenu/Background.jpg?fileID=2800000&amp;guid=13063d4332f6b6f469ed733b91d433f3&amp;type=3#Background&apos;);">
-        <ui:GroupBox name="saves_list" style="align-self: flex-start; width: 35%; height: 100%; align-items: flex-start; position: absolute;" />
-        <ui:GroupBox name="saves_info" style="width: 35%; align-self: flex-end; height: 100%; position: absolute; justify-content: center; top: 0;" />
-        <ui:Button text="Load" parse-escape-sequences="true" display-tooltip-when-elided="true" name="load_button" style="align-self: center; top: 152px; height: 42px; width: 208px;" />
-        <ui:Button text="Cancel" parse-escape-sequences="true" display-tooltip-when-elided="true" name="cancel_button" style="align-self: center; top: 164px; height: 42px; width: 208px;" />
-        <ui:Button text="Delete" parse-escape-sequences="true" display-tooltip-when-elided="true" name="delete_button" style="align-self: center; width: 208px;" />
+    <ui:VisualElement name="background" style="flex-grow: 1; align-items: center; background-image: url(&apos;project://database/Assets/Levels/MainMenu/Background.jpg?fileID=2800000&amp;guid=13063d4332f6b6f469ed733b91d433f3&amp;type=3#Background&apos;); flex-direction: row; flex-wrap: nowrap; justify-content: center;">
+        <ui:GroupBox name="saves_list" style="height: 100%; width: 35%;" />
+        <ui:VisualElement name="buttons_group" style="height: 100%; justify-content: flex-end; align-items: center; width: 30%;">
+            <ui:Button text="Delete" parse-escape-sequences="true" display-tooltip-when-elided="true" name="delete_button" style="align-self: auto; width: 70%; align-items: auto; height: 5%; margin-top: 10px;" />
+            <ui:Button text="Load" parse-escape-sequences="true" display-tooltip-when-elided="true" name="load_button" style="align-self: auto; height: 5%; width: 70%; align-items: auto; margin-top: 10px;" />
+            <ui:Button text="Cancel" parse-escape-sequences="true" display-tooltip-when-elided="true" name="cancel_button" style="align-self: auto; height: 5%; width: 70%; align-items: auto; margin-top: 10px;" />
+        </ui:VisualElement>
+        <ui:GroupBox name="saves_info" style="height: 100%; width: 35%;" />
     </ui:VisualElement>
 </ui:UXML>

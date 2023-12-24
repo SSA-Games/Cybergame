@@ -10,7 +10,7 @@ public static class SaveLoadManager
 {
     public static string path;
     private static DirectoryInfo folder;
-    public static PlayerSaveData LoadedPlayerData;
+    public static SaveData LoadedPlayerData;
     static SaveLoadManager()
     {
         path = Application.persistentDataPath;
@@ -32,7 +32,7 @@ public static class SaveLoadManager
         //Находим игрока, чтобы взять у него данные
         GameObject player = SceneManager.GetActiveScene().GetRootGameObjects().Where(obj => obj.name == "Player").ToArray()[0];
         //Сохраняем
-        PlayerSaveData data = new PlayerSaveData(player);
+        SaveData data = new SaveData(player);
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path + "/saves" + name, json);
         return name.Substring(1, 5);
@@ -41,8 +41,8 @@ public static class SaveLoadManager
     public static void LoadSave(string name) //Загрузка сохранения.
     {
         string json = File.ReadAllText(path + "/saves/" + name + ".json");
-        LoadedPlayerData = JsonUtility.FromJson<PlayerSaveData>(json); //Получаем данные из файла
-        SceneManager.LoadScene(LoadedPlayerData.level_name);
+        LoadedPlayerData = JsonUtility.FromJson<SaveData>(json); //Получаем данные из файла
+        SceneManager.LoadScene(LoadedPlayerData.LevelName);
     }
 
 
