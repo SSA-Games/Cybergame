@@ -32,31 +32,6 @@ abstract public class CharacterInstance : MonoBehaviour
         }
     }
 
-    public void CastSkill(Skill skill)
-    {
-        Energy -= skill.Cost;
-
-        switch (skill.Type) {                   // Позже изменю чтобы было покрасивее
-            case SkillType.CLOSE_RANGE:
-                // Инстанцирование префаба скилла skill
-                GameObject skillGameObject = Instantiate(skillPrefab);
-                skillGameObject.transform.position = this.gameObject.transform.position + (Vector3)PlayerControl.ViewDirection;
-                skillGameObject.transform.localScale = skill.Size;
-                skillGameObject.transform.SetParent(this.gameObject.transform);
-
-                skillGameObject.GetComponent<SkillInstance>().SetSkillInfo(skill);
-                break;
-            case SkillType.HACK:
-                /* 
-                 * Что должен уметь делать любой скрипт Hack?
-                 * Выбирать для себя цели (по всей карте или ту, что под мышкой)
-                 * Применять эффект на цели.
-                 * Не нужно создавать GameObject
-                 */
-                break;
-        }
-    }
-
     public void GetHitBySkill(Skill skill) // При попадании по объекту скилла, вызвать эту функцию
     {
         if (!Invulnurable)
@@ -75,7 +50,7 @@ abstract public class CharacterInstance : MonoBehaviour
     {
         foreach (Skill skill in AcquiredSkills)
         {
-            if (skill.name == name)
+            if (skill.Name == name)
             {
                 return skill;
             }

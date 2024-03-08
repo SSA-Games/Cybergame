@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class SkillInstance : MonoBehaviour
+public class SkillCollisionDetector : MonoBehaviour
 {
     Skill SkillInfo;
     public void Start()

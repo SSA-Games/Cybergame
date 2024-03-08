@@ -19,6 +19,7 @@ public class PlayerControl : MonoBehaviour
     private DialogManager dm;
     private Rigidbody2D rb;
     private Collider2D coll;
+    private SkillManager sm;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class PlayerControl : MonoBehaviour
         player = GetComponent<PlayerInstance>();
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+        sm = GetComponent<SkillManager>();
 
         rb.freezeRotation = true;
     }
@@ -88,29 +90,29 @@ public class PlayerControl : MonoBehaviour
 
             // Использование умений
 
-            if (Input.GetKeyDown(KeyCode.Q) && player.skillSlots[0] != null)
+            if (Input.GetKeyDown(KeyCode.Q) && sm.Aquired_skills[0] != null)
             {
-                if (Time.time - cooldowns[0] > player.skillSlots[0].Cooldown)
+                if (Time.time - cooldowns[0] > sm.Aquired_skills[0].Cooldown)
                 {
-                    player.CastSkill(player.skillSlots[0]);
+                    sm.CastSkill(0);
                     cooldowns[0] = Time.time;
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && player.skillSlots[1] != null)
+            if (Input.GetKeyDown(KeyCode.E) && sm.Aquired_skills[1] != null)
             {
-                if (Time.time - cooldowns[1] > player.skillSlots[1].Cooldown)
+                if (Time.time - cooldowns[1] > sm.Aquired_skills[1].Cooldown)
                 {
-                    player.CastSkill(player.skillSlots[1]);
+                    sm.CastSkill(1);
                     cooldowns[1] = Time.time;
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.R) && player.skillSlots[0] != null)
+            if (Input.GetKeyDown(KeyCode.R) && sm.Aquired_skills[2] != null)
             {
-                if (Time.time - cooldowns[2] > player.skillSlots[2].Cooldown)
+                if (Time.time - cooldowns[2] > sm.Aquired_skills[2].Cooldown)
                 {
-                    player.CastSkill(player.skillSlots[2]);
+                    sm.CastSkill(2);
                     cooldowns[2] = Time.time;
                 }
             }
