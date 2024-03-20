@@ -10,8 +10,8 @@ public class SaveData
     public float[] Position = new float[3];
     public string LevelName;
 
-    public List<Item> Inventory = new List<Item>();
-    public List<Skill> AcquiredSkills = new List<Skill>();
+    public List<Item> Inventory = new List<Item>(); //Инвентарь игрока
+    public List<GameObject> AcquiredSkills = new List<GameObject>(); // Список префабов скиллов, доступных игроку
 
     public SaveData(GameObject player)
     {
@@ -22,7 +22,8 @@ public class SaveData
         LevelName = player.scene.name;
 
         PlayerInstance playerInstance = player.GetComponent<PlayerInstance>();
+        SkillManager sm = player.GetComponent<SkillManager>();
         Inventory = playerInstance.Inventory;
-        AcquiredSkills = playerInstance.AcquiredSkills;
+        AcquiredSkills = sm.Acquired_skills;
     }
 }

@@ -70,11 +70,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4193326742699602127}
-  - component: {fileID: 327398635308075406}
   - component: {fileID: 1628106898973972179}
   - component: {fileID: -2503846856145185056}
   - component: {fileID: -2595064704881487305}
   - component: {fileID: 2089746410540806123}
+  - component: {fileID: 3320785230349705546}
   - component: {fileID: 3073986009657204974}
   - component: {fileID: 3284447935502773718}
   - component: {fileID: 916162013201678489}
@@ -102,33 +102,6 @@ Transform:
   - {fileID: 7349644518403161096}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &327398635308075406
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561717349041609517}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!212 &1628106898973972179
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -193,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53622d207018c44499041969af19b0b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 0.3
   dashForce: 30
   minJumpHeight: 2
   maxJumpHeight: 3
@@ -224,8 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e4d88fdf83de74a92ceb2137b978e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AcquiredSkills:
-  - {fileID: 11400000, guid: 7e89b5627904e694dab0d5bf07118a5b, type: 2}
   Name: John Doe
   Health: 300
   Energy: 100
@@ -233,10 +204,22 @@ MonoBehaviour:
   Talkable: 0
   InBattle: 0
   InDialog: 0
-  skillPrefab: {fileID: 0}
   Inventory: []
-  skillSlots:
-  - {fileID: 0}
+--- !u!114 &3320785230349705546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561717349041609517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e7b539b03c6b545b9f1d4db2df9fda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Acquired_skills: []
+  hotkey_skills:
+  - {fileID: 3177398793337341705, guid: cc0c794f1276bec49b3c64510e32fee8, type: 3}
   - {fileID: 0}
   - {fileID: 0}
 --- !u!81 &3073986009657204974

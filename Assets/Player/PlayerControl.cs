@@ -5,19 +5,11 @@ public class PlayerControl : MonoBehaviour
 {
     public static Vector2 ViewDirection = Vector2.right;
     public float moveSpeed = 5f;
-    public float dashForce = 30f;
-    public float minJumpHeight = 2f;
-    public float maxJumpHeight = 3f;
-    public float maxJumpHoldTime = 1.0f;
 
-    private bool isGrounded;
-    private bool isJumping = false;
-    private float jumpStartTime;
     private float[] cooldowns = new float[] { 0, 0, 0 }; //Таймер кулдаунов
 
     private PlayerInstance player;
     private DialogManager dm;
-    private Rigidbody2D rb;
     private Collider2D coll;
     private SkillManager sm;
 
@@ -25,92 +17,49 @@ public class PlayerControl : MonoBehaviour
     {
         dm = GameObject.Find("GameManager").GetComponent<DialogManager>();
         player = GetComponent<PlayerInstance>();
-        rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         sm = GetComponent<SkillManager>();
-
-        rb.freezeRotation = true;
     }
 
     void Update()
     {
-        isGrounded = Physics2D.IsTouchingLayers(coll, LayerMask.GetMask("Ground"));
         ViewDirection = GetViewDirection();
 
+        Move();
 
         // Если игрок занят, его передвижение отключено. Тут своя система управления
         if (player.InDialog)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.F))
             {
                 dm.ContinueDialog();
             }
         }
         else // Если игрок не занят, обычная система управления:
         {
-            Move();
-
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            {
-                isJumping = true;
-                jumpStartTime = Time.time;
-            }
-
-            if (Input.GetKey(KeyCode.Space) && isJumping)
-            {
-                Jump();
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space) && isJumping)
-            {
-                isJumping = false;
-            }
-
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                Dash();
-                isJumping = true;
-                jumpStartTime = Time.time;
-            }
-
-            if (Input.GetKey(KeyCode.Space) && isJumping)
-            {
-                Jump();
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space) && isJumping)
-            {
-                isJumping = false;
-            }
-
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                Dash();
-            }
-
             // Использование умений
 
-            if (Input.GetKeyDown(KeyCode.Q) && sm.Aquired_skills[0] != null)
+            if (Input.GetKeyDown(KeyCode.Q) && sm.GetSkillFromHotkey(0) != null)
             {
-                if (Time.time - cooldowns[0] > sm.Aquired_skills[0].Cooldown)
+                if (Time.time - cooldowns[0] > sm.GetSkillFromHotkey(0).Cooldown)
                 {
                     sm.CastSkill(0);
                     cooldowns[0] = Time.time;
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && sm.Aquired_skills[1] != null)
+            if (Input.GetKeyDown(KeyCode.E) && sm.GetSkillFromHotkey(1) != null)
             {
-                if (Time.time - cooldowns[1] > sm.Aquired_skills[1].Cooldown)
+                if (Time.time - cooldowns[1] > sm.GetSkillFromHotkey(1).Cooldown)
                 {
                     sm.CastSkill(1);
                     cooldowns[1] = Time.time;
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.R) && sm.Aquired_skills[2] != null)
+            if (Input.GetKeyDown(KeyCode.R) && sm.GetSkillFromHotkey(2) != null)
             {
-                if (Time.time - cooldowns[2] > sm.Aquired_skills[2].Cooldown)
+                if (Time.time - cooldowns[2] > sm.GetSkillFromHotkey(2).Cooldown)
                 {
                     sm.CastSkill(2);
                     cooldowns[2] = Time.time;
@@ -128,41 +77,14 @@ public class PlayerControl : MonoBehaviour
 
     void Move()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        Vector2 movement = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
-        rb.velocity = movement;
-
-        if (isJumping)
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+        if (horizontalInput != 0 || verticalInput != 0) // Когда есть команда двигаться
         {
-            Jump();
-        }
-    }
-
-    void Jump()
-        {
-         if (Time.time - jumpStartTime < maxJumpHoldTime)
-            {
-                float jumpHeight = Mathf.Lerp(minJumpHeight, maxJumpHeight, Mathf.Clamp01((Time.time - jumpStartTime) / maxJumpHoldTime));
-             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
-         }
-            else
-            {
-                isJumping = false;
-                if (Time.time - jumpStartTime < maxJumpHoldTime)
-                {
-                    float jumpHeight = Mathf.Lerp(minJumpHeight, maxJumpHeight, Mathf.Clamp01((Time.time - jumpStartTime) / maxJumpHoldTime));
-                    rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
-                }
-            }
-        }
-    void Dash()
-    {
-        if (isGrounded)
-        {
-            rb.freezeRotation = false;
-            rb.AddForce(Vector2.down * 15f, ForceMode2D.Impulse);
-            rb.velocity = new Vector2(rb.velocity.x + dashForce, rb.velocity.y);
-            rb.freezeRotation = true;
+            float p = Mathf.Sqrt(Mathf.Pow(horizontalInput, 2) + Mathf.Pow(verticalInput, 2));
+            // Третья (Z) компонента используется для корректного отображения спрайтов
+            Vector3 newPos = new Vector3(transform.position.x + horizontalInput * moveSpeed / p, transform.position.y + verticalInput * moveSpeed / p, transform.position.z + verticalInput * moveSpeed);
+            transform.position = newPos;
         }
     }
 

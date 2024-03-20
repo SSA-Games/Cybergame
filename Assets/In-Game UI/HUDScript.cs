@@ -8,6 +8,7 @@ public class HUDScript : MonoBehaviour
     PlayerInstance player;
 
     public VisualElement root;
+    public SkillManager sm;
 
     public Button Skill_1;
     public Button Skill_2;
@@ -16,6 +17,7 @@ public class HUDScript : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<PlayerInstance>();
+        sm = GameObject.Find("Player").GetComponent<SkillManager>();
     }
 
     private void OnEnable()
@@ -37,7 +39,7 @@ public class HUDScript : MonoBehaviour
     {
         try
         {
-            Skill_1.style.backgroundImage = new StyleBackground(player.skillSlots[0].Icon);
+            Skill_1.style.backgroundImage = new StyleBackground(sm.GetSkillFromHotkey(0).Icon);
         }
         catch
         {
@@ -45,7 +47,7 @@ public class HUDScript : MonoBehaviour
         }
         try
         {
-            Skill_2.style.backgroundImage = new StyleBackground(player.skillSlots[1].Icon);
+            Skill_2.style.backgroundImage = new StyleBackground(sm.GetSkillFromHotkey(1).Icon);
         }
         catch
         {
@@ -53,7 +55,7 @@ public class HUDScript : MonoBehaviour
         }
         try
         {
-            Skill_3.style.backgroundImage = new StyleBackground(player.skillSlots[2].Icon);
+            Skill_3.style.backgroundImage = new StyleBackground(sm.GetSkillFromHotkey(2).Icon);
         }
         catch
         {

@@ -4,7 +4,6 @@ using UnityEngine;
 
 abstract public class CharacterInstance : MonoBehaviour
 {
-    public List<Skill> AcquiredSkills; // Список скиллов, которыми обладает персонаж
     public string Name = "CHARACTER_NAME";
     public float Health;
     public float Energy;
@@ -15,8 +14,7 @@ abstract public class CharacterInstance : MonoBehaviour
     public bool InBattle = false; 
     public bool InDialog = false; // Находится ли персонаж в диалоге (нужно для управления персонажем)
 
-    protected GameObject Target; // Цель в бою
-    public GameObject skillPrefab; // Экземпляр пустого скилла.
+    protected GameObject Target; // Цель в бою, для NPC
 
     protected DialogManager dm;
 
@@ -32,32 +30,10 @@ abstract public class CharacterInstance : MonoBehaviour
         }
     }
 
-    public void GetHitBySkill(Skill skill) // При попадании по объекту скилла, вызвать эту функцию
-    {
-        if (!Invulnurable)
-        {
-            Health -= skill.Damage;
-        }
-    }
 
     public virtual void Die()
     {
         Destroy(gameObject); // 死
     }
 
-    // Поиск умения в списке приобретенных умений (по имени) -------
-    protected Skill GetAcquiredSkillByName(string name)
-    {
-        foreach (Skill skill in AcquiredSkills)
-        {
-            if (skill.Name == name)
-            {
-                return skill;
-            }
-        }
-        Debug.Log("Couldn't find the skill in list of acquired skills");
-        return null;
-    }
-
-    // -------------------------------------------------------------
 }

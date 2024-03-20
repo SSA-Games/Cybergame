@@ -8,16 +8,12 @@ public class PlayerInstance : CharacterInstance
     private GameObject closestInteractableObject;
 
     public List<Item> Inventory = new List<Item>();
-    public Skill[] skillSlots = new Skill[3];
 
     protected override void Start()
     {
         base.Start();
         Debug.Log("1) Нужно что-то сделать с детектированием объектов. Убрать Rigidbody и переделать управление движением?");
         Debug.Log("Если что, подбирать предметы и говорить на кнопочку F");
-        //DEBUG
-        ChangeSkillSlot(0, GetAcquiredSkillByName("Pantheon Q DEBUG")); // Добвяляем изученный скилл в скиллслот
-        //DEBUG
     }
 
     protected override void Update()
@@ -31,18 +27,6 @@ public class PlayerInstance : CharacterInstance
             {
                 closestInteractableObject = obj;
             }
-        }
-    }
-
-    public void ChangeSkillSlot(int slotNumber, Skill skill) // Поставить умение в скиллслот
-    {
-        if (AcquiredSkills.Contains(skill)) // ...но только если оно изучено
-        {
-            skillSlots[slotNumber] = skill;
-        }
-        else
-        {
-            Debug.Log("You can't insert a skill you haven't acquired");
         }
     }
 

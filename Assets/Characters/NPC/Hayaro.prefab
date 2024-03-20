@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -8227180299737706172}
   - component: {fileID: -7003030606766962380}
   - component: {fileID: -7008048982399425772}
+  - component: {fileID: 7466337984905464190}
   m_Layer: 0
   m_Name: Hayaro
   m_TagString: NPC
@@ -133,12 +134,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0a6c65f5f9f62478c49c64ee8e54f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AcquiredSkills: []
   Name: Hayaro
   Health: 1000
   Energy: 300
   Invulnurable: 1
   Talkable: 1
   InBattle: 0
-  FightModeTarget: {fileID: 0}
-  skillPrefab: {fileID: 0}
+  InDialog: 0
+--- !u!50 &7466337984905464190
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8365334511792810542}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
