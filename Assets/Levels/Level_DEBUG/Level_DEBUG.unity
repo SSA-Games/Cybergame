@@ -133,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8559350260325847162, guid: 32df37bd3a03be140bbcf1b5cbc89961, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4986703165547901759, guid: 32df37bd3a03be140bbcf1b5cbc89961, type: 3}
       propertyPath: itemPrefab
@@ -211,8 +211,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pantheon
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -1441554696547425877, guid: 32df37bd3a03be140bbcf1b5cbc89961, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -786,6 +785,10 @@ PrefabInstance:
     - target: {fileID: -2595064704881487305, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}
       propertyPath: PauseUIObject
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -2503846856145185056, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}
+      propertyPath: moveSpeed
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 411251946697929515, guid: 23f73e38fc4a9274fb976d0891b4eb22, type: 3}
       propertyPath: m_Icon

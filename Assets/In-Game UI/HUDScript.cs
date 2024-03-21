@@ -14,6 +14,9 @@ public class HUDScript : MonoBehaviour
     public Button Skill_2;
     public Button Skill_3;
 
+    public ProgressBar Health_bar;
+    public ProgressBar Energy_bar;
+
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<PlayerInstance>();
@@ -29,6 +32,9 @@ public class HUDScript : MonoBehaviour
         Skill_2 = root.Q<Button>("skill_2");
         Skill_3 = root.Q<Button>("skill_3");
 
+        Health_bar = root.Q<ProgressBar>("health_bar");
+        Energy_bar = root.Q<ProgressBar>("energy_bar");
+
         // -----
         Skill_1.text = "";
         Skill_2.text = "";
@@ -37,6 +43,7 @@ public class HUDScript : MonoBehaviour
 
     private void Update()
     {
+        // Skill icons update
         try
         {
             Skill_1.style.backgroundImage = new StyleBackground(sm.GetSkillFromHotkey(0).Icon);
@@ -61,5 +68,10 @@ public class HUDScript : MonoBehaviour
         {
             // Nope, don't care at all!
         }
+
+        // ProgressBars update
+
+        Health_bar.value = player.Health;
+        Energy_bar.value = player.Energy;
     }
 }

@@ -6,7 +6,11 @@ abstract public class CharacterInstance : MonoBehaviour
 {
     public string Name = "CHARACTER_NAME";
     public float Health;
+    public float MaxHealth;
+    public float HealthRegen;
     public float Energy;
+    public float MaxEnergy;
+    public float EnergyRegen;
 
     // Флаги состояния персонажа
     public bool Invulnurable = false; // Проходят ли по персонажу попадания (ставить true для NPC не в бою)

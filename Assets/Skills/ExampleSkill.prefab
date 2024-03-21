@@ -145,9 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: ExampleSkill
   Icon: {fileID: 216587829, guid: 9149be068acad6e46b8837041d36b6ab, type: 3}
-  Cost: 0
+  Cost: 10
   Cooldown: 1
   Damage: 50
-  Size: {x: 0, y: 0}
-  Sprite: {fileID: 0}
   AnimationLengthSeconds: 1

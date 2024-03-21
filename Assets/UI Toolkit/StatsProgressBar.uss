@@ -1,0 +1,13 @@
+.unity-progress-bar__container {
+	min-height: 10px;
+	max-height: 100px;
+	height: 40px;
+}
+
+.unity-health-bar .unity-progress-bar__progress {
+	background-color: rgb(255, 0, 51);
+}
+
+.unity-energy-bar .unity-progress-bar__progress {
+	background-color: rgb(255, 215, 0);
+}

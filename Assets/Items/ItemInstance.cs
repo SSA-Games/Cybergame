@@ -40,4 +40,5 @@ public class ItemInstance : MonoBehaviour // Ёкземпл€р ItemInstance вызываетс€, 
     {
         return ItemInfo;
     }
+
 }

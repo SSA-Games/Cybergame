@@ -7,7 +7,7 @@ public class PauseControl : MonoBehaviour
     public UIManager UImanager;
     public bool CanPause = true; // Может ли игрок нажать на паузу сейчас
 
-    private bool isPaused = false; // Статус паузы
+    public bool IsPaused = false; // Статус паузы
 
 
     private void Awake()
@@ -19,7 +19,7 @@ public class PauseControl : MonoBehaviour
         //Проверка нажатия ESC
         if (Input.GetKeyDown(KeyCode.Escape) && CanPause == true ) // Если игрок занят, клавиша не работает
         {
-            SetPause(!isPaused);
+            SetPause(!IsPaused);
         }
     }
 
@@ -28,13 +28,13 @@ public class PauseControl : MonoBehaviour
     {
         if (flag)
         {
-            isPaused = true;
+            IsPaused = true;
             Time.timeScale = 0f;
             UImanager.LoadUI("PauseUI");
         }
         else
         {
-            isPaused = false;
+            IsPaused = false;
             Time.timeScale = 1f;
             UImanager.UnloadUI("PauseUI");
         }

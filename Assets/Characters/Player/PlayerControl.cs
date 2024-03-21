@@ -10,22 +10,22 @@ public class PlayerControl : MonoBehaviour
 
     private PlayerInstance player;
     private DialogManager dm;
+    private PauseControl pauseControl;
     private Collider2D coll;
     private SkillManager sm;
 
-    void Start()
+    void Awake()
     {
         dm = GameObject.Find("GameManager").GetComponent<DialogManager>();
         player = GetComponent<PlayerInstance>();
         coll = GetComponent<Collider2D>();
         sm = GetComponent<SkillManager>();
+        pauseControl = GetComponent<PauseControl>();
     }
 
     void Update()
     {
         ViewDirection = GetViewDirection();
-
-        Move();
 
         // Если игрок занят, его передвижение отключено. Тут своя система управления
         if (player.InDialog)
@@ -35,8 +35,13 @@ public class PlayerControl : MonoBehaviour
                 dm.ContinueDialog();
             }
         }
+        else if (pauseControl.IsPaused)
+        {
+            // Can't do anything!
+        }
         else // Если игрок не занят, обычная система управления:
         {
+            Move();
             // Использование умений
 
             if (Input.GetKeyDown(KeyCode.Q) && sm.GetSkillFromHotkey(0) != null)

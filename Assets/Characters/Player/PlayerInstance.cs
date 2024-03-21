@@ -12,13 +12,31 @@ public class PlayerInstance : CharacterInstance
     protected override void Start()
     {
         base.Start();
-        Debug.Log("1) Нужно что-то сделать с детектированием объектов. Убрать Rigidbody и переделать управление движением?");
-        Debug.Log("Если что, подбирать предметы и говорить на кнопочку F");
+
+        // Stats initialization:
+        Health = 200;
+        MaxHealth = 200;
+        HealthRegen = 0.1f;
+        Energy = 100;
+        MaxEnergy = 100;
+        EnergyRegen = 0.1f; 
     }
 
+    protected void FixedUpdate()
+    {
+        if (Health < MaxHealth)
+        {
+            Health += HealthRegen;
+        }
+        if (Energy < MaxEnergy)
+        {
+            Energy += EnergyRegen;
+        }
+    }
     protected override void Update()
     {
         base.Update(); // Check if we are dead
+
 
         // Перерасчет расстояния до объектов в InteractableObjects (Мы всегда взаимодействуем с ближайшим)
         foreach(GameObject obj in interactableObjects)
@@ -34,14 +52,7 @@ public class PlayerInstance : CharacterInstance
     {
         if (closestInteractableObject != null) // Если нашли объект
         {
-            if (closestInteractableObject.tag == "Item") // Если объект - предмет
-            {
-                //Подбор предмета
-                ItemInstance item = closestInteractableObject.GetComponent<ItemInstance>();
-                Inventory.Add(item.GetItemInfo());
-                Destroy(closestInteractableObject);
-            }
-            else if (closestInteractableObject.tag == "NPC") // Если объект - NPC
+            if (closestInteractableObject.tag == "NPC") // Если объект - NPC
             {
                 //Взимодействие с NPC
                 InDialog = true;
@@ -61,7 +72,10 @@ public class PlayerInstance : CharacterInstance
         // Если детектирован предмет, NPC, или магазин, добавляем в список предметов для взаимодействия
         if (collision.TryGetComponent<ItemInstance>(out item))
         {
-            interactableObjects.Add(item.gameObject);
+            Debug.Log("Item detected!");
+            //Подбор предмета
+            Inventory.Add(item.GetItemInfo());
+            Destroy(item.gameObject);
         }
         else if (collision.TryGetComponent<NPCInstance>(out NPC))
         { 
@@ -75,7 +89,7 @@ public class PlayerInstance : CharacterInstance
             closestInteractableObject = interactableObjects[0];
         }
     }
-    private void OnTriggerExit2D(Collider2D collision) // При выходе из радиуса интерактивности
+    private void OnTriggerExit2D(Collider2D collision) // При выходе объекта из радиуса интерактивности
     {
         // Если то, что нас покидает было в списке объектов для взаимодействия, удаляем оттуда.
         if (interactableObjects.Contains(collision.gameObject))

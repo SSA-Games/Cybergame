@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -4986703165547901759}
   - component: {fileID: -3379078162574781707}
   - component: {fileID: -8559350260325847162}
-  - component: {fileID: -1441554696547425877}
+  - component: {fileID: -6231737526261577587}
   m_Layer: 0
   m_Name: Pantheon
   m_TagString: Enemy
@@ -47,15 +47,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c1be4ab2d3b95a48b9180d10485d1d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AcquiredSkills: []
   Name: Pantheon
   Health: 200
+  MaxHealth: 0
+  HealthRegen: 0
   Energy: 50
+  MaxEnergy: 0
+  EnergyRegen: 0
   Invulnurable: 0
   Talkable: 0
   InBattle: 0
   InDialog: 0
-  skillPrefab: {fileID: 0}
   itemPrefab: {fileID: 0}
   LootList:
   - {fileID: 0}
@@ -140,7 +142,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -156,7 +158,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!50 &-1441554696547425877
+--- !u!50 &-6231737526261577587
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -164,7 +166,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7517794146459987297}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
